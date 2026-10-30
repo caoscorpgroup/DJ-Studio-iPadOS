@@ -43,9 +43,13 @@ Se ha iniciado un paquete Swift independiente, `DJStudioCore`, como primera base
 ## Base de código
 
 - `Package.swift`: paquete Swift 6.
-- `Sources/DJStudioCore/Track.swift`: modelos de pista, metadatos y análisis.
+- `Sources/DJStudioCore/Track.swift`: modelos de pista, metadatos ID3, bookmarks y análisis.
+- `Sources/DJStudioCore/MP3ID3Reader.swift`: lector local de ID3v2.2/v2.3/v2.4 e ID3v1; lee solo los bytes de etiquetas.
+- `Sources/DJStudioCore/LocalFolderImporter.swift`: enumeración recursiva de formatos de audio locales.
+- `Sources/DJStudioCore/LocalLibraryStore.swift`: catálogo JSON local con escritura atómica.
+- `Sources/DJStudioCore/LocalLibraryScanner.swift`: conexión de importación, lectura de metadatos, análisis opcional y persistencia.
 - `Sources/DJStudioCore/LibraryInterfaces.swift`: contratos para lectura local y análisis offline; enriquecimiento externo opcional.
 - `Sources/DJStudioCore/CompatibilityEngine.swift`: primera clasificación transparente de compatibilidad.
 - `Tests/DJStudioCoreTests/CompatibilityEngineTests.swift`: pruebas unitarias iniciales.
 
-La primera versión del producto está centrada en dos decks. No se han ejecutado workflows de GitHub Actions ni compilaciones remotas. La base todavía requiere validación con Swift/Xcode y pruebas en el iPad objetivo.
+La primera versión del producto está centrada en dos decks. La biblioteca local no depende de servicios de streaming ni servidores externos. La app iPadOS deberá gestionar los permisos y bookmarks de carpetas seleccionadas por el usuario. No se han ejecutado workflows de GitHub Actions ni compilaciones remotas. La base todavía requiere validación con Swift/Xcode y pruebas en el iPad objetivo.
