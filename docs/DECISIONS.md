@@ -6,7 +6,7 @@ Este documento recoge decisiones y supuestos del proyecto. Las decisiones nuevas
 - Nombre provisional: DJ Studio.
 - Plataforma inicial: iPadOS.
 - Archivos locales como fuente musical inicial.
-- Dos decks como vista predeterminada; cuatro decks como modo opcional.
+- Alcance inicial: exclusivamente dos decks A/B.
 - Interfaz oscura profesional y personalizable.
 
 ## 2026-10-29 — Hardware prioritario
@@ -26,7 +26,7 @@ Este documento recoge decisiones y supuestos del proyecto. Las decisiones nuevas
 ## 2026-10-30 — Referencia visual y navegación
 - edjing Mix se adopta como referencia de facilidad de uso, organización de pantallas y flujo de trabajo DJ; no se copiarán su código, identidad visual ni recursos propietarios.
 - La pantalla principal usará dos decks como disposición predeterminada.
-- Cuatro decks serán un modo de estudio opcional, solo cuando los cuatro waveforms y controles sigan siendo legibles.
+- La pantalla principal se diseñará exclusivamente para dos decks A/B y dos waveforms amplios.
 - La navegación se organizará en cinco áreas: DJ principal, FX Studio, Biblioteca, Performance y Hardware/Mapping.
 - La biblioteca deberá escanear música local y analizar BPM, tonalidad, beatgrid y waveform; también se estudiará una visualización de actividad rítmica/energética a lo largo de la pista.
 - La interfaz mantendrá controles esenciales visibles y desplazará opciones avanzadas a paneles secundarios para evitar saturación.
@@ -40,6 +40,11 @@ Este documento recoge decisiones y supuestos del proyecto. Las decisiones nuevas
 - C++/Objective-C++ no será una dependencia central; se permitirá para módulos DSP concretos únicamente si benchmarks y auditoría de licencia justifican su uso.
 - La aplicación priorizará procesamiento local y herramientas gratuitas. No se autoriza ningún gasto, suscripción ni servicio de pago.
 - El desarrollo debe considerar que el usuario no dispone de Mac local: se investigará Swift Playgrounds y compilación remota macOS, sin dar por resueltos firma, instalación ni depuración hasta probarlos.
+
+## 2026-10-30 — Confirmación de alcance y exclusiones
+- El producto se limita a dos decks (A/B); no se diseñarán ni implementarán decks adicionales sin una nueva aprobación explícita del usuario.
+- Scratch queda fuera del alcance aprobado y no se añadirá a la hoja de ruta ni a las pruebas de hardware.
+- Las decisiones explícitas del usuario prevalecen sobre propuestas o supuestos anteriores que contradigan este alcance.
 
 ## Pendiente de decisión o validación
 - Versión mínima de iPadOS.
