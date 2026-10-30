@@ -27,7 +27,7 @@ public struct MP3ID3Reader: AudioMetadataReading {
         }
 
         let tagSize = synchsafeInteger(header, at: 6)
-        guard tagSize >= 0, UInt64(tagSize) <= fileSize - 10 else {
+        guard tagSize >= 0, tagSize <= 16 * 1024 * 1024, UInt64(tagSize) <= fileSize - 10 else {
             return readID3v1Tail(from: handle, fileSize: fileSize) ?? TrackMetadata()
         }
 
