@@ -107,7 +107,9 @@ Se requiere separar master y cue/headphones. La disponibilidad de canales depend
 Los datos de usuario se almacenarán localmente. La aplicación deberá respetar permisos de acceso a archivos y evitar modificar los archivos originales. Los metadatos y análisis se podrán reconstruir si la caché se pierde.
 
 ### Biblioteca musical local
-- El usuario selecciona carpetas mediante el selector de documentos de iPadOS; la capa de aplicación gestiona acceso security-scoped y bookmarks persistentes.
+- La vista `MusicLibraryView` permite seleccionar carpetas mediante el selector de documentos de iPadOS.
+- `MusicFolderBookmarkStore` persiste y resuelve bookmarks en Application Support; el escaneo inicia y detiene el acceso security-scoped alrededor de cada carpeta.
+- `SystemAudioMetadataReader` usa AVFoundation para metadatos comunes en formatos reconocidos por el sistema y usa el lector ID3 dedicado como fallback para MP3.
 - El núcleo enumera recursivamente formatos de audio admitidos y lee etiquetas ID3 sin reescribir archivos.
 - El lector ID3 inicial contempla ID3v2.2, v2.3, v2.4 y fallback ID3v1 para MP3.
 - La biblioteca persiste referencias, metadatos y análisis en un catálogo JSON local con escritura atómica; no copia los archivos de audio.
