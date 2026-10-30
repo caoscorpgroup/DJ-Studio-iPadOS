@@ -1,0 +1,26 @@
+name: DJStudioCore validation
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: djstudio-core-validation
+  cancel-in-progress: true
+
+jobs:
+  package-tests:
+    name: Swift package tests (macOS)
+    runs-on: macos-15
+    timeout-minutes: 10
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Show Swift toolchain
+        run: swift --version
+
+      - name: Build and run package tests
+        run: swift test --parallel
