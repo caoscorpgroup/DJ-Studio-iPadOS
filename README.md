@@ -40,6 +40,12 @@ Propuesta inicial: Swift, SwiftUI, Core Audio, Core MIDI y Accelerate; C++/Objec
 
 Se ha iniciado un paquete Swift independiente, `DJStudioCore`, como primera base de código. Incluye modelos de pistas/análisis, interfaces para lectura de metadatos y análisis local, y un primer comparador explicable de compatibilidad armónica, BPM y energía. Es una base de dominio, no todavía una aplicación iPadOS instalable ni un motor de audio.
 
+## Biblioteca musical iPadOS (integración inicial)
+
+Se añadieron una vista SwiftUI de biblioteca, selección de carpetas con el selector de documentos, almacenamiento local de bookmarks y lectura de metadatos con AVFoundation para formatos compatibles con el sistema. El acceso a cada carpeta se abre temporalmente con security-scoped access durante el escaneo. Los bookmarks y el catálogo se guardan en Application Support.
+
+La cobertura de metadatos depende del formato y de los tags realmente presentes. El lector ID3 dedicado continúa como fallback para MP3. El proyecto aún no contiene un target de aplicación Xcode completo ni se ha compilado o probado en iPadOS.
+
 ## Base de código
 
 - `Package.swift`: paquete Swift 6.
@@ -48,6 +54,9 @@ Se ha iniciado un paquete Swift independiente, `DJStudioCore`, como primera base
 - `Sources/DJStudioCore/LocalFolderImporter.swift`: enumeración recursiva de formatos de audio locales.
 - `Sources/DJStudioCore/LocalLibraryStore.swift`: catálogo JSON local con escritura atómica.
 - `Sources/DJStudioCore/LocalLibraryScanner.swift`: conexión de importación, lectura de metadatos, análisis opcional y persistencia.
+- `Sources/DJStudioCore/MusicFolderBookmarkStore.swift`: persistencia y resolución de permisos/bookmarks de carpetas.
+- `Sources/DJStudioCore/SystemAudioMetadataReader.swift`: metadatos comunes mediante AVFoundation y fallback ID3 para MP3.
+- `Sources/DJStudioCore/MusicLibraryView.swift`: vista SwiftUI inicial para seleccionar carpetas, escanear y consultar pistas.
 - `Sources/DJStudioCore/LibraryInterfaces.swift`: contratos para lectura local y análisis offline; enriquecimiento externo opcional.
 - `Sources/DJStudioCore/CompatibilityEngine.swift`: primera clasificación transparente de compatibilidad.
 - `Tests/DJStudioCoreTests/CompatibilityEngineTests.swift`: pruebas unitarias iniciales.
