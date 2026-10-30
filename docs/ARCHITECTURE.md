@@ -68,8 +68,8 @@ El prototipo comenzará evaluando AVFAudio/AVAudioEngine. La decisión de usar C
 ### MIDI Manager
 - Descubrimiento de dispositivos Core MIDI.
 - Lectura de mensajes y normalización.
-- Perfiles/mappings declarativos.
-- Capas, modificadores, feedback MIDI cuando sea compatible.
+- Perfiles y mappings declarativos.
+- Feedback MIDI cuando sea compatible.
 - Registro de mensajes para depuración.
 
 ### Library Manager
