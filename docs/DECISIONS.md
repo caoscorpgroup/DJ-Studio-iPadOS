@@ -14,13 +14,6 @@ Este documento recoge decisiones y supuestos del proyecto. Las decisiones nuevas
 - No confundir con AIR+ ni Inpulse 500.
 - La compatibilidad física y el sensor AIR siguen pendientes de prueba.
 
-## 2026-10-29 — Arquitectura
-- App nativa con Swift/SwiftUI.
-- Core Audio y Core MIDI como tecnologías principales a evaluar.
-- C++ solo para DSP/algoritmos donde aporte valor.
-- Separación estricta entre UI y motor de audio.
-- No usar Python como motor de audio de producción.
-
 ## 2026-10-29 — Política de costes
 - Priorizar herramientas gratuitas y ejecución local.
 - No contratar servicios, comprar APIs, activar suscripciones ni incurrir en gastos sin autorización explícita.
@@ -30,12 +23,6 @@ Este documento recoge decisiones y supuestos del proyecto. Las decisiones nuevas
 - La rama principal se mantiene estable.
 - Experimentos y cambios de riesgo se desarrollarán en ramas separadas y se revisarán antes de integrar.
 
-## Pendiente de decisión
-- Versión mínima de iPadOS.
-- Estrategia definitiva de motor de audio (Core Audio de bajo nivel frente a AVAudioEngine u otra combinación).
-- Base de datos local.
-- Framework de análisis musical después de auditoría.
-- Política de distribución y publicación.
 ## 2026-10-30 — Referencia visual y navegación
 - edjing Mix se adopta como referencia de facilidad de uso, organización de pantallas y flujo de trabajo DJ; no se copiarán su código, identidad visual ni recursos propietarios.
 - La pantalla principal usará dos decks como disposición predeterminada.
@@ -44,7 +31,21 @@ Este documento recoge decisiones y supuestos del proyecto. Las decisiones nuevas
 - La biblioteca deberá escanear música local y analizar BPM, tonalidad, beatgrid y waveform; también se estudiará una visualización de actividad rítmica/energética a lo largo de la pista.
 - La interfaz mantendrá controles esenciales visibles y desplazará opciones avanzadas a paneles secundarios para evitar saturación.
 
-## Próxima sesión — lenguaje y base tecnológica
-- Revisar y decidir el lenguaje y las tecnologías de implementación para iPadOS.
-- Comparar Swift/SwiftUI, Core Audio, Core MIDI y las opciones de motor de audio con criterios de latencia, estabilidad, compatibilidad con iPadOS, mantenimiento y posibilidad de compilar sin un Mac local.
-- No cerrar la elección del motor de audio ni iniciar una implementación amplia hasta documentar las ventajas, limitaciones y una prueba técnica mínima.
+## 2026-10-30 — Lenguaje y base tecnológica aprobados
+- Swift 6 queda aprobado como lenguaje principal de DJ Studio.
+- SwiftUI será la tecnología principal de presentación.
+- AVFAudio/AVAudioEngine será la primera ruta a evaluar para el prototipo de audio; la elección definitiva frente a Core Audio de menor nivel queda condicionada a pruebas.
+- Core MIDI será la base de comunicación con controladoras MIDI.
+- Accelerate/vDSP se utilizará cuando sea útil para análisis y procesamiento de señales.
+- C++/Objective-C++ no será una dependencia central; se permitirá para módulos DSP concretos únicamente si benchmarks y auditoría de licencia justifican su uso.
+- La aplicación priorizará procesamiento local y herramientas gratuitas. No se autoriza ningún gasto, suscripción ni servicio de pago.
+- El desarrollo debe considerar que el usuario no dispone de Mac local: se investigará Swift Playgrounds y compilación remota macOS, sin dar por resueltos firma, instalación ni depuración hasta probarlos.
+
+## Pendiente de decisión o validación
+- Versión mínima de iPadOS.
+- Motor de audio definitivo y arquitectura de ruteo master/cue.
+- Base de datos local.
+- Framework de análisis musical después de auditoría de licencia y portabilidad.
+- Compatibilidad real de la Hercules DJControl AIR original, incluido sensor AIR.
+- Flujo reproducible de compilación, firma, instalación y depuración desde el entorno disponible.
+- Política de distribución y publicación.
