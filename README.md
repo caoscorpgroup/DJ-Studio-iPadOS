@@ -7,8 +7,8 @@ Proyecto de aplicación DJ nativa para iPad, orientada a mezcla local, baja late
 ## Objetivos principales
 
 - Reproducir y mezclar archivos de audio locales.
-- Ofrecer dos decks como vista predeterminada y una opción de cuatro decks.
 - Diseñar una interfaz profesional, configurable y usable en iPad.
+- Mantener dos decks (A/B) como alcance inicial; cuatro decks quedan para una posible fase futura.
 - Priorizar compatibilidad con la **Hercules DJControl AIR original**.
 - Permitir una arquitectura de mappings extensible para otras controladoras.
 - Separar el motor de audio de la interfaz para proteger la continuidad de reproducción.
