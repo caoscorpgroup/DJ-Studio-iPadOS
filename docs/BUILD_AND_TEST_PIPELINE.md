@@ -7,14 +7,19 @@ Encontrar un flujo que permita editar el proyecto desde el iPad y compilar una a
 ## Opciones que se deben evaluar
 
 ### 1. Swift Playgrounds en iPad
-Evaluar:
-- Crear y ejecutar un App Playground con SwiftUI.
-- Acceso a frameworks necesarios para el prototipo.
-- Límites de estructura del proyecto, paquetes y pruebas.
-- Exportación/transferencia del código a un repositorio Git.
-- Capacidad real de probar Core MIDI y audio con el hardware conectado.
 
-No asumir que Swift Playgrounds sustituye todas las capacidades de Xcode.
+La documentación oficial de Apple confirma que Swift Playgrounds permite crear y ejecutar App Playgrounds con SwiftUI en el iPad, agregar archivos Swift y paquetes Swift, y abrir/transferir proyectos a Xcode. Es una ruta real para prototipar una app nativa desde el iPad, pero no demuestra por sí sola que todo el paquete y los subsistemas de DJ Studio funcionen en ese entorno.
+
+Evaluar con un proyecto mínimo:
+- Abrir o importar el código existente de `DJStudioCore` como paquete Swift.
+- Compilar y ejecutar la vista de biblioteca existente.
+- Confirmar disponibilidad y comportamiento de AVFAudio/AVAudioEngine, Core MIDI y bookmarks de carpetas.
+- Verificar acceso a archivos, pruebas unitarias, estructura de carpetas y exportación Git.
+- Probar el uso real de la Hercules DJControl AIR original conectada al iPad.
+
+Referencias oficiales: [Manual de Swift Playgrounds para iPadOS](https://support.apple.com/es-mx/guide/playgrounds-ipad/welcome/ipados), [explorar App Playgrounds](https://support.apple.com/es-mx/guide/playgrounds-ipad/itcdd1ad55f1/ipados) y [Swift Playgrounds para desarrolladores](https://developer.apple.com/swift-playground/).
+
+No asumir que Swift Playgrounds sustituye todas las capacidades de Xcode ni declarar compatibilidad con audio/MIDI hasta probarla.
 
 ### 2. GitHub Actions con runner macOS
 Evaluar:
