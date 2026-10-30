@@ -254,3 +254,61 @@ Cada recomendación debe explicar por qué aparece: por ejemplo, "misma tonalida
 - La tonalidad detectada puede ser ambigua o cambiar durante la pista.
 - Las secciones, instrumentos y transiciones se estiman y deben poder corregirse.
 - El análisis y la recomendación funcionarán localmente como objetivo de diseño, sin requerir servicios de pago ni conexión permanente.
+
+
+## 17. Constructor asistido de sets y planificación de sesiones largas
+
+### Problema de usuario
+
+Preparar un set de varias horas requiere escuchar, comparar y seleccionar manualmente muchas pistas. El objetivo es reducir el tiempo de curaduría sin quitar al DJ el control creativo ni convertir la selección en una secuencia automática y rígida.
+
+### Objetivo
+
+A partir de una biblioteca analizada, permitir que el usuario defina una duración objetivo (por ejemplo, tres horas) y reciba propuestas de secuencias de pistas que puedan formar un show coherente.
+
+### Flujo de trabajo
+
+1. El usuario elige una duración objetivo, por ejemplo 180 minutos.
+2. Opcionalmente selecciona una pista inicial, energía inicial/final, estilo, rango de BPM, tonalidades preferidas o pistas obligatorias/excluidas.
+3. DJ Studio propone una o varias secuencias candidatas a partir de la biblioteca local.
+4. Cada secuencia muestra duración estimada, número de pistas, orden, BPM, tonalidad/Camelot, energía y transiciones previstas.
+5. El usuario puede bloquear pistas/posiciones, reemplazar una canción, pedir alternativas para un punto específico o reorganizar manualmente.
+6. La duración total se recalcula con los tiempos de mezcla estimados y el usuario puede ajustar cuánto se superponen las pistas.
+7. El set se guarda como proyecto/lista de preparación, sin modificar los archivos originales.
+
+### Motor de secuenciación
+
+El recomendador debe evaluar la secuencia como conjunto, no solo sumar compatibilidades de pares. Considerar:
+- Compatibilidad armónica entre pistas consecutivas, incluyendo cambios de tonalidad y posibles variaciones internas.
+- Continuidad y evolución de BPM; detectar saltos que requieran ajuste de pitch o transición especial.
+- Curva de energía y densidad rítmica a lo largo del set.
+- Estructuras, intros/outros y ventanas de mezcla disponibles.
+- Posibles conflictos de graves/kick/bajo y solapamiento de elementos densos.
+- Repetición excesiva de tonalidades, artistas, pistas o patrones.
+- Calidad y confianza de los análisis, duración real y disponibilidad de segmentos utilizables.
+
+### Curva narrativa y control creativo
+
+- Permitir definir una trayectoria de energía, por ejemplo: apertura, desarrollo, subida, pico, respiro y cierre.
+- No imponer una curva fija: el usuario puede elegir una progresión lineal, escalonada, ondulante o personalizada.
+- Ofrecer más de una propuesta de set con enfoques distintos.
+- Explicar los motivos y compromisos de cada transición.
+- Permitir marcar pistas favoritas, obligatorias, prohibidas y reservas.
+- Ofrecer alternativas locales para cada posición sin reconstruir todo el set.
+- Mantener edición manual total y no iniciar reproducción o mezcla automática como resultado de la planificación.
+
+### Estimación de duración
+
+La duración del set debe estimarse considerando duración de cada pista y solapamiento de las transiciones; no asumir que 50 canciones equivalen siempre a tres horas. Mostrar duración estimada y margen de incertidumbre, ya que el DJ puede alargar o acortar mezclas en vivo.
+
+### Presentación
+
+- Timeline de la sesión con pistas ordenadas y bloques de transición.
+- Curva de energía estimada.
+- Indicadores de armonía/BPM y alertas de saltos o posibles conflictos.
+- Tiempo acumulado y duración estimada restante.
+- Vista de alternativas y reservas.
+
+### Principio de diseño
+
+El sistema es un asistente de curaduría y planificación: propone, explica y permite experimentar. El DJ decide el orden final, las transiciones y la interpretación del show. No prometer que una secuencia algorítmica garantiza un buen set.
