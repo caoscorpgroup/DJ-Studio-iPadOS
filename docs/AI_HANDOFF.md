@@ -154,16 +154,18 @@ Son pistas de investigación, no mappings validados. Comprobar accesibilidad y q
 
 No duplicar investigaciones. Actualizar estos documentos cuando se confirmen nuevos hallazgos.
 
-## 8. Contradicciones conocidas que hay que corregir
+## 8. Contradicciones conocidas y estado de corrección
 
-La documentación anterior conserva requisitos antiguos que ya no representan lo aprobado. Auditar y corregirlos en una rama de trabajo:
+**Revisión del 2026-10-30:** las contradicciones enumeradas abajo ya fueron corregidas en la rama `docs/swift6-technical-foundation`:
 
-- `docs/PRODUCT_SPEC.md`: todavía menciona Reverse, Slip, Roll, Beat Jump, Quantize y Scratch. Eliminar Scratch y no tratar las otras funciones no aprobadas como alcance del MVP.
-- `docs/ROADMAP.md`: todavía incluye validación de scratch y funciones avanzadas no aprobadas. Reescribir las tareas conforme al alcance vigente.
-- `docs/ARCHITECTURE.md`: todavía describe estados/funciones de Reverse y una progresión a cuatro decks. El diseño inicial debe centrarse en dos decks; cuatro decks no forman parte del MVP.
-- `docs/DECISIONS.md`: hay entradas antiguas que hablan de cuatro decks como opción o modo de estudio. Añadir una decisión más reciente que deje claro que la primera versión será solo de dos decks.
-- `docs/HARDWARE_COMPATIBILITY.md`: la fila sobre scratch debe reemplazarse por pruebas de jog/Pitch Bend sin scratch.
-- Mantener diferenciadas las funciones aprobadas, las propuestas y las pendientes de validación.
+- `docs/PRODUCT_SPEC.md`: eliminadas de las funciones activas del MVP Scratch, Reverse, Slip, Roll, Beat Jump, Quantize y sampler; grabación queda fuera de la primera versión.
+- `docs/ROADMAP.md`: retiradas pruebas de scratch y funciones avanzadas de performance no aprobadas; se mantienen Hot Cues básicos y loops.
+- `docs/ARCHITECTURE.md`: retirado Reverse y la progresión a decks adicionales; arquitectura limitada a dos decks A/B.
+- `docs/DECISIONS.md`: alcance A/B y exclusiones registrados como decisión vigente.
+- `docs/HARDWARE_COMPATIBILITY.md` y `docs/MIDI_HARDWARE_VALIDATION.md`: validación de jog limitada a búsqueda/posición y Pitch Bend, sin scratch ni capas para decks adicionales.
+- `docs/AUDIO_POC_SPEC.md`, `docs/IMPLEMENTATION_PLAN.md` y `docs/FX_STUDIO_SPEC.md`: retiradas referencias a funciones no aprobadas dentro del trabajo activo.
+
+Mantener diferenciadas las funciones aprobadas, las propuestas y las pendientes de validación. No reincorporar funciones excluidas sin aprobación explícita del usuario.
 
 No marcar una función como completada solo porque exista una descripción o una interfaz visual.
 
