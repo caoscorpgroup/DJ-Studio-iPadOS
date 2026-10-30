@@ -6,32 +6,52 @@ public struct MP3ID3Reader: AudioMetadataReading {
     public init() {}
 
     public func readMetadata(from fileURL: URL) async throws -> TrackMetadata {
-        let data = try Data(contentsOf: fileURL, options: [.mappedIfSafe])
-        guard data.count >= 3,
-              String(data: data.prefix(3), encoding: .ascii) == "ID3" else {
-            return readID3v1(from: data) ?? TrackMetadata()
+        let handle = try FileHandle(forReadingFrom: fileURL)
+        defer { try? handle.close() }
+
+        let fileSize = try handle.seekToEnd()
+        try handle.seek(toOffset: 0)
+        let header = try handle.read(upToCount: 10) ?? Data()
+
+        guard header.count >= 3,
+              String(data: header.prefix(3), encoding: .ascii) == "ID3" else {
+            return readID3v1Tail(from: handle, fileSize: fileSize) ?? TrackMetadata()
+        }
+        guard header.count == 10 else {
+            return readID3v1Tail(from: handle, fileSize: fileSize) ?? TrackMetadata()
         }
 
-        guard data.count >= 10 else { return readID3v1(from: data) ?? TrackMetadata() }
-        let majorVersion = data[3]
+        let majorVersion = header[3]
         guard (2...4).contains(majorVersion) else {
-            return readID3v1(from: data) ?? TrackMetadata()
+            return readID3v1Tail(from: handle, fileSize: fileSize) ?? TrackMetadata()
         }
 
-        let tagSize = synchsafeInteger(data, at: 6)
-        guard tagSize >= 0, tagSize <= data.count - 10 else {
-            return readID3v1(from: data) ?? TrackMetadata()
+        let tagSize = synchsafeInteger(header, at: 6)
+        guard tagSize >= 0, UInt64(tagSize) <= fileSize - 10 else {
+            return readID3v1Tail(from: handle, fileSize: fileSize) ?? TrackMetadata()
         }
 
-        var tagData = Data(data[10..<(10 + tagSize)])
-        let unsynchronization = (data[5] & 0x80) != 0
-        if unsynchronization {
-            tagData = removeUnsynchronization(from: tagData)
+        let tagData = try handle.read(upToCount: tagSize) ?? Data()
+        guard tagData.count == tagSize else {
+            return readID3v1Tail(from: handle, fileSize: fileSize) ?? TrackMetadata()
         }
 
+        let unsynchronized = (header[5] & 0x80) != 0
+        let normalizedTag = unsynchronized ? removeUnsynchronization(from: tagData) : tagData
         var metadata = TrackMetadata()
-        parseFrames(in: tagData, version: majorVersion, into: &metadata)
-        return merge(metadata, fallback: readID3v1(from: data))
+        parseFrames(in: normalizedTag, version: majorVersion, into: &metadata)
+        return merge(metadata, fallback: readID3v1Tail(from: handle, fileSize: fileSize))
+    }
+
+    private func readID3v1Tail(from handle: FileHandle, fileSize: UInt64) -> TrackMetadata? {
+        guard fileSize >= 128 else { return nil }
+        do {
+            try handle.seek(toOffset: fileSize - 128)
+            let tail = try handle.read(upToCount: 128) ?? Data()
+            return tail.count == 128 ? readID3v1(from: tail) : nil
+        } catch {
+            return nil
+        }
     }
 
     private func parseFrames(in data: Data, version: UInt8, into metadata: inout TrackMetadata) {
