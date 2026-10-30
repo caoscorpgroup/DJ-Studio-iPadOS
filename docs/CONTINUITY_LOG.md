@@ -48,13 +48,13 @@ Se reconciliaron README y documentos de arquitectura, producto, decisiones, impl
 ### Acceso y CI
 - La lectura de la rama y de la PR #1 fue confirmada.
 - La escritura en la rama `docs/swift6-technical-foundation` fue confirmada mediante commits documentales; no se escribió en `main`.
-- La consulta de ejecuciones asociadas al HEAD revisado (`51da5715695f10accd5ce1ac16b8b5d825096ba3`) devolvió cero ejecuciones. La lista de archivos modificados de la PR no contiene workflows; los permisos de Actions y el árbol completo de workflows no se han podido verificar.
+- La consulta de ejecuciones asociadas al HEAD revisado (`e9c6db144c1595fd158fdbfc51610eb7031d82a5`) devolvió cero ejecuciones. La lista de archivos modificados de la PR no contiene workflows; los permisos de Actions y el árbol completo de workflows no se han podido verificar.
 - No se ejecutó ningún workflow.
 - No se pudo verificar desde esta instancia la facturación, cuota restante, presupuesto de Actions ni permisos específicos de Actions de la cuenta. Por tanto, no iniciar runners hasta que esos límites puedan comprobarse.
 - El entorno local disponible para esta revisión es Linux x86_64 con Swift 6.2.1 y sin `xcodebuild`; no permite validar los frameworks ni la compilación nativa iPadOS.
 
 ### Siguiente orden de trabajo
-1. Completar auditoría de código y pruebas existentes, conservando los componentes correctos.
+1. Resolver los hallazgos de la auditoría estática del parser ID3, comparador de tonalidad y pruebas de biblioteca; compilar y ejecutar las pruebas en un entorno Apple autorizado.
 2. Cerrar la prueba técnica mínima de compilación/ejecución en un entorno Apple autorizado y sin gasto no aprobado.
 3. Crear el target mínimo de aplicación iPadOS y conectar la biblioteca existente sin duplicar su lógica.
 4. Implementar el Audio POC según `docs/AUDIO_POC_SPEC.md`: archivo local, play/pause/stop/seek y diagnóstico.
