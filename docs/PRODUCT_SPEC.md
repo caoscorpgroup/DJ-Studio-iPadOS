@@ -357,3 +357,30 @@ Durante el escaneo de la biblioteca, DJ Studio podrá intentar identificar pista
 ### Alcance inicial y aprobación
 
 Primero implementar lectura local de etiquetas y análisis DSP. La integración remota queda como módulo opcional sujeto a evaluación legal/técnica de cada proveedor. No se autoriza por esta especificación ningún gasto, suscripción, servidor ni API de pago.
+
+
+## 19. Aclaración de alcance: metadatos locales primero, enriquecimiento opcional
+
+La biblioteca y todas las funciones de análisis/recomendación deben funcionar localmente y sin conexión. No se construirá ni requerirá un servidor externo para el funcionamiento normal de DJ Studio.
+
+### Política de lectura y enriquecimiento
+
+- Leer los tags existentes del archivo (ID3 para MP3 y metadatos equivalentes en otros formatos soportados).
+- Conservar los metadatos originales y no sobrescribirlos automáticamente.
+- Detectar campos ausentes, incompletos o potencialmente inconsistentes.
+- Analizar el contenido de audio localmente para calcular características musicales: BPM/tempo, tonalidad, beatgrid/downbeats, energía por bandas, densidad rítmica, estructura estimada y ventanas potenciales de mezcla.
+- Solo si el usuario lo habilita y faltan datos descriptivos, permitir una consulta externa puntual para intentar identificar la grabación y recuperar metadatos complementarios.
+- La consulta externa no es requisito para analizar, organizar, recomendar o construir sets.
+- No descargar música, no hacer streaming y no enviar archivos de audio completos.
+- Cualquier metadato externo se almacena como dato enriquecido con su fuente y confianza, separado de los tags originales.
+- El usuario puede aceptar, corregir o descartar el enriquecimiento.
+- Si no hay internet, el proveedor falla o el usuario desactiva consultas, continuar normalmente con los datos locales y señalar los campos que no pudieron verificarse.
+
+### Datos y decisiones de compatibilidad
+
+El recomendador debe combinar:
+1. Metadatos descriptivos: título, artista, álbum, año, género, sello y versión/remix cuando estén disponibles.
+2. Análisis acústico: BPM, tonalidad, compás/beatgrid, energía, estructura y actividad de frecuencias.
+3. Preferencias y decisiones del DJ: etiquetas propias, pistas favoritas/excluidas y correcciones manuales.
+
+Los metadatos descriptivos ayudan a reconocer y organizar la música; la compatibilidad de mezcla se calcula principalmente a partir de las características musicales analizadas y las preferencias del DJ.
