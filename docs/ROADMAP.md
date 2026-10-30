@@ -50,6 +50,10 @@ Puerta de salida: reproducción estable, instalación reproducible y ruteo docum
 - [ ] Detectar secciones musicales (intro, break, build-up, drop, outro) como sugerencias editables.
 - [ ] Investigar cambios de tonalidad y tempo dentro de una pista.
 - [ ] Diseñar comparador de compatibilidad entre dos pistas: armonía, BPM, energía y estructura.
+- [ ] Escanear carpetas locales y generar biblioteca con análisis y caché.
+- [ ] Crear agrupación/orden por tonalidad, modo y Camelot.
+- [ ] Crear recomendador de pistas compatibles para una canción seleccionada.
+- [ ] Explicar los motivos de cada recomendación y permitir guardar listas de preparación.
 
 ## Fase 5 — FX y performance
 - [ ] FX básicos y parámetros.
