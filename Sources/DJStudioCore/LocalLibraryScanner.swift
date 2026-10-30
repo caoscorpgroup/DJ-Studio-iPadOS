@@ -15,6 +15,10 @@ public struct LocalLibraryScanner: Sendable {
     }
 
     public func scan(files: [URL], into store: LocalLibraryStore) async throws -> [Track] {
+        let existingTracks = await store.allTracks()
+        let existingByPath = Dictionary(
+            uniqueKeysWithValues: existingTracks.map { ($0.fileURL.standardizedFileURL.path, $0) }
+        )
         var imported: [Track] = []
         imported.reserveCapacity(files.count)
 
@@ -26,7 +30,16 @@ public struct LocalLibraryScanner: Sendable {
             } else {
                 analysis = TrackAnalysis()
             }
-            imported.append(Track(fileURL: fileURL, metadata: metadata, analysis: analysis))
+
+            let previous = existingByPath[fileURL.standardizedFileURL.path]
+            imported.append(Track(
+                id: previous?.id ?? UUID(),
+                fileURL: fileURL,
+                fileBookmark: previous?.fileBookmark,
+                duration: previous?.duration,
+                metadata: metadata,
+                analysis: analysis
+            ))
         }
 
         try await store.upsert(contentsOf: imported)
