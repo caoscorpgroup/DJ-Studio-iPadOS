@@ -53,6 +53,10 @@ Puerta de salida: reproducción estable, instalación reproducible y ruteo docum
 - [ ] Escanear carpetas locales y generar biblioteca con análisis y caché.
 - [ ] Crear agrupación/orden por tonalidad, modo y Camelot.
 - [ ] Crear recomendador de pistas compatibles para una canción seleccionada.
+- [ ] Diseñar constructor asistido de sets por duración objetivo.
+- [ ] Proponer secuencias con continuidad armónica, BPM, energía y estructura.
+- [ ] Permitir bloquear/reemplazar pistas, comparar propuestas y ajustar transiciones.
+- [ ] Visualizar timeline, curva de energía y duración estimada del set.
 - [ ] Explicar los motivos de cada recomendación y permitir guardar listas de preparación.
 
 ## Fase 5 — FX y performance
