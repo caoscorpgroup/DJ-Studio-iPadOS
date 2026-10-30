@@ -97,3 +97,30 @@ La grabación de mezclas es una función deseada. Debe evaluarse el formato, la 
 4. Persistencia y recuperación de la biblioteca y metadatos.
 5. UI que no interrumpa el audio al cambiar de panel.
 6. Pruebas documentadas con el modelo exacto de controladora.
+## 12. Referencia visual y navegación — edjing Mix
+
+edjing Mix queda establecido como referencia de facilidad de uso, organización de pantallas y flujo de mezcla. Se estudiará como inspiración funcional y visual, sin copiar código, identidad, recursos gráficos ni una interfaz propietaria.
+
+Principios acordados:
+- La pantalla principal debe ser clara y fácil de entender, con los controles esenciales a mano.
+- Dos decks grandes serán la vista predeterminada.
+- Cuatro decks serán un modo alternativo de estudio, activable cuando el espacio disponible permita mostrar cuatro waveforms y controles legibles. No se forzarán cuatro decks en una pantalla pequeña o saturada.
+- Biblioteca musical, FX Studio, Performance y Hardware/Mapping tendrán espacios claramente identificados y navegación sencilla.
+- Las herramientas avanzadas estarán en paneles secundarios o desplegables para no sobrecargar la pantalla de mezcla.
+- La estética será oscura, profesional y propia de DJ Studio.
+
+### Biblioteca y análisis de pistas
+La biblioteca debe permitir importar y escanear archivos musicales locales. El análisis buscará identificar BPM, tonalidad y estructura rítmica, además de generar waveforms. Se desea mostrar visualmente las zonas de mayor y menor actividad rítmica/energética de una pista para facilitar la preparación y la mezcla. Esta representación será una estimación derivada del análisis de audio, no una afirmación de que cada sección tiene un nivel de beat objetivo universal. El usuario podrá revisar y corregir los resultados.
+
+### Cuatro decks y espacio de trabajo
+- Dos decks: modo principal para mezcla habitual, con waveforms amplios.
+- Cuatro decks: modo de estudio/avanzado, con cuatro waveforms visibles y un mixer de cuatro canales.
+- La distribución se adaptará al tamaño y orientación del iPad; si cuatro decks comprometen legibilidad, se mantendrá el modo de dos decks.
+- El modo de cuatro decks no implica que una controladora física de dos canales controle cuatro decks simultáneamente; se podrán usar capas/modificadores o controles táctiles.
+
+### Áreas principales de navegación
+1. DJ principal: decks, waveforms, mixer y transporte.
+2. FX Studio: efectos, cadenas, parámetros y presets.
+3. Biblioteca: exploración, importación, análisis y preparación musical.
+4. Performance: Hot Cues, loops, Roll, Beat Jump y sampler.
+5. Hardware/Mapping: selección de controladora, asignación de botones, knobs, faders y perfiles.
