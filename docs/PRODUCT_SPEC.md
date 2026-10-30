@@ -312,3 +312,48 @@ La duración del set debe estimarse considerando duración de cada pista y solap
 ### Principio de diseño
 
 El sistema es un asistente de curaduría y planificación: propone, explica y permite experimentar. El DJ decide el orden final, las transiciones y la interpretación del show. No prometer que una secuencia algorítmica garantiza un buen set.
+
+
+## 18. Enriquecimiento opcional de metadatos mediante fuentes externas
+
+### Objetivo
+
+Durante el escaneo de la biblioteca, DJ Studio podrá intentar identificar pistas y completar metadatos usando fuentes externas, cuando el usuario lo permita. Esta capa complementa —no sustituye— el análisis acústico local.
+
+### Orden de trabajo
+
+1. Leer primero etiquetas locales y metadatos embebidos (ID3, MP4 y formatos compatibles).
+2. Analizar localmente BPM, tonalidad, beatgrid, energía, estructura y características espectrales.
+3. Si faltan datos o hay ambigüedad, ofrecer identificación externa opcional.
+4. Cuando sea técnicamente y legalmente viable, calcular una huella acústica local y consultar un proveedor de identificación compatible.
+5. Recuperar metadatos descriptivos y vincularlos al archivo solo si la coincidencia supera un umbral de confianza; permitir confirmación/corrección manual.
+6. Guardar en caché el resultado y la procedencia para evitar consultas repetidas.
+
+### Privacidad y control
+
+- No subir canciones completas ni fragmentos de audio como comportamiento predeterminado.
+- Preferir huellas acústicas calculadas localmente; explicar que una huella también se envía al proveedor cuando se usa identificación remota.
+- La consulta externa debe ser opcional, configurable y desactivable.
+- No enviar rutas locales, nombres de carpetas ni datos personales innecesarios.
+- La biblioteca y el análisis básico deben seguir funcionando sin internet.
+- No enviar huellas para contribuir a bases de datos ni compartir archivos sin consentimiento separado y explícito.
+
+### Fuentes candidatas y restricciones
+
+- MusicBrainz: candidato para metadatos de grabaciones, lanzamientos, artistas y sellos. La documentación indica que el servicio web es gratuito para uso no comercial, exige identificación de la aplicación y limita cada cliente a una solicitud por segundo. Su licencia/plan aplicable debe verificarse antes de cualquier distribución comercial.
+- AcoustID/Chromaprint: candidato para identificar grabaciones mediante huella acústica local y enlazar resultados con MusicBrainz. AcoustID indica que el servicio gratuito es para uso no comercial; las aplicaciones comerciales deben registrarse/consultar sus condiciones comerciales. Respetar el límite publicado de solicitudes.
+- Otras fuentes solo podrán incorporarse después de revisar términos, atribución, privacidad, límites, estabilidad y costes.
+
+### Arquitectura de integración
+
+- Definir una interfaz de proveedor independiente para no acoplar la biblioteca a un servicio.
+- Separar identificación (huella y coincidencia) de enriquecimiento (metadatos descriptivos).
+- Mantener campos originales, campos detectados localmente y campos externos como valores con procedencia separada.
+- Registrar fuente, fecha de consulta y confianza de coincidencia.
+- Resolver resultados contradictorios sin sobrescribir silenciosamente las etiquetas del usuario.
+- Aplicar límites de frecuencia, reintentos controlados y caché.
+- No depender de un servidor propio ni contratar infraestructura pagada para la primera versión.
+
+### Alcance inicial y aprobación
+
+Primero implementar lectura local de etiquetas y análisis DSP. La integración remota queda como módulo opcional sujeto a evaluación legal/técnica de cada proveedor. No se autoriza por esta especificación ningún gasto, suscripción, servidor ni API de pago.
