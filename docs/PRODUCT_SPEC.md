@@ -19,7 +19,7 @@ No se pretende reproducir exactamente la interfaz ni el producto de otra marca. 
 - Alcance inicial: exclusivamente dos decks (A y B), para reproducir y mezclar dos pistas simultáneamente.
 - El alcance aprobado se limita a dos decks (A y B); no se contempla ampliar el número de decks sin una nueva aprobación explícita.
 - Información visible: BPM, tonalidad, posición, duración, pitch, estado de reproducción y waveform.
-- Ocho Hot Cues por pista.
+- Hot Cues básicos por pista.
 - Cue temporal y cue permanente.
 - Beatgrid editable y guardable.
 - Waveform con carga progresiva y caché.
@@ -27,7 +27,7 @@ No se pretende reproducir exactamente la interfaz ni el producto de otra marca. 
 ## 4. Mezcla y reproducción
 
 Funciones objetivo:
-- Play/Pause, Cue, Sync y Master Tempo.
+- Play/Pause, Cue y SYNC basado en BPM y beatgrid.
 - Pitch fader y pitch bend.
 - EQ de tres bandas, filtro, gain y medidores.
 - Crossfader y mezcla por canal.
