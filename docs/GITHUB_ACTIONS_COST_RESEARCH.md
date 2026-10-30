@@ -71,3 +71,13 @@ La revisión de la rama `docs/swift6-technical-foundation` confirma que el paque
 ## Decisión propuesta
 
 Usar GitHub Actions macOS dentro de la cuota incluida, pero solo después de comprobar el presupuesto y el consumo real de la cuenta. Si no se puede garantizar el bloqueo de cargos adicionales, no ejecutar el runner macOS. No cambiar la visibilidad del repositorio ni contratar servicios para resolver esta limitación.
+
+
+## Actualización de continuidad — 2026-10-30
+
+- La consulta de permisos de colaborador confirma nivel `write` para la cuenta conectada. Esto confirma escritura en el repositorio, pero **no** acredita permiso específico de Actions ni acceso a facturación/presupuestos.
+- Se comprobó que `.github/workflows/djstudio-core-validation.yml` no existía en la rama y se creó un workflow manual para validar el paquete Swift en `macos-15`.
+- El workflow es exclusivamente manual (`workflow_dispatch`), un job, timeout de 10 minutos, permisos `contents: read`, sin secretos ni artefactos.
+- La configuración se guardó, pero no se ha despachado ningún run. No se han consumido minutos de runner en esta tarea.
+- La rama sigue siendo `docs/swift6-technical-foundation`; PR #1 continúa abierta y sin fusionar. La revisión de comparación reportó 100 commits por delante de `main`, 0 por detrás.
+- La configuración de Actions y la facturación/cuota/budget no pudieron leerse con los permisos disponibles. Mantener el workflow sin ejecutar hasta que el usuario compruebe el presupuesto y el saldo o se confirme un hard stop de gasto adicional.
