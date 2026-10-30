@@ -13,7 +13,7 @@ La prioridad es determinar qué funciones expone realmente el dispositivo a iPad
 | USB | Enumeración, alimentación y estabilidad con el hub/adaptador usado |
 | MIDI | Mensajes enviados por cada botón, knob y fader |
 | Jog wheels | Resolución, dirección, velocidad y comportamiento táctil |
-| Scratch | Si se distingue giro normal de contacto/touch |
+
 | Sensor AIR | Si los datos del sensor están expuestos como MIDI u otro protocolo accesible |
 | Audio | Dispositivo de salida, número de canales y formatos |
 | Master/Cue | Posibilidad real de separar canales de mezcla y preescucha |
@@ -34,7 +34,7 @@ La prioridad es determinar qué funciones expone realmente el dispositivo a iPad
 - No se ha probado físicamente la DJControl AIR en este proyecto.
 - El sensor AIR no debe considerarse compatible hasta capturar y entender su señal.
 - No se debe asumir que el mapeo publicado para Mixxx se puede importar directamente.
-- Una controladora de dos decks no proporciona automáticamente cuatro decks físicos.
+- La cantidad de controles físicos y los mensajes que expone la controladora deben comprobarse directamente; no se presumirá ninguna función no validada.
 - La preescucha independiente requiere que el dispositivo de audio exponga salidas suficientes.
 
 ## Datos pendientes del equipo real
