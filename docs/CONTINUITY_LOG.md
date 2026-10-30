@@ -8,8 +8,9 @@
 - PR de revisión: #1, con destino a `main`; permanece abierta y no se ha fusionado.
 - Este repositorio corresponde exclusivamente a DJ Studio para iPadOS.
 - Alcance aprobado: dos decks A/B y dos canales. No diseñar ni implementar decks adicionales sin aprobación explícita.
+- Funciones aprobadas de la primera versión según `docs/AI_HANDOFF.md`: dos decks A/B y mixer de dos canales; Play/Pause/Cue; crossfader y volumen por canal; EQ de tres bandas y gain; pitch faders/BPM y SYNC basado en BPM/beatgrid; Hot Cues básicos y loops manuales/automáticos; waveforms y posición; preescucha separada si el hardware ofrece canales; biblioteca local; análisis local de BPM, tonalidad, Camelot y beatgrid; FX Studio modular y filtros Low-Pass/High-Pass; Core MIDI y evaluación de la Hercules DJControl AIR original/sensor AIR.
 - Exclusiones del MVP: Scratch, Reverse, Slip, Roll, Beat Jump, Quantize, sampler y funciones avanzadas de performance no aprobadas.
-- Grabación de mezclas queda fuera de la primera versión.
+- Grabación de mezclas queda fuera de la primera versión; streaming/nube obligatoria, integraciones externas obligatorias y servicios de IA tampoco forman parte del alcance inicial.
 - Jog limitado a búsqueda/posición y Pitch Bend temporal; al soltar, vuelve al valor fijado por el pitch fader.
 - No modificar `main`, no fusionar la PR ni ejecutar workflows sin autorización y verificación previa de permisos, cuota y costes.
 
@@ -25,6 +26,15 @@
 - Seis archivos de pruebas unitarias iniciales: compatibilidad, importador, escáner, almacenamiento y parser ID3 (incluida fixture temporal).
 - La selección de pista para Deck A/B solo prepara la pista; no carga ni reproduce audio.
 
+### Auditoría estática del código (pendiente de corrección y pruebas)
+- `MP3ID3Reader` no salta correctamente una cabecera extendida ID3v2.3 antes de recorrer frames.
+- La máscara de flags de formato de frame solo comprueba bits 0x0C; para ID3v2.3 los flags de compresión/cifrado usan 0x80/0x40. Requiere corrección y pruebas para v2.3/v2.4.
+- La cobertura ID3 actual se concentra en un caso v2.3. La fixture temporal contiene bytes ID3 válidos y un payload parecido a MPEG, pero no es una grabación MP3 completa ni decodificable.
+- `CompatibilityEngine` solo interpreta claves Camelot; el fallback `TrackMetadata.musicalKey` puede contener notación musical ID3 convencional (por ejemplo, Am) y entonces no produce puntuación armónica.
+- `MusicLibraryView.scanURL` ejecuta la enumeración recursiva síncrona de carpetas desde una vista `@MainActor`; mover ese trabajo fuera del actor principal antes de probar bibliotecas grandes.
+- No hay pruebas específicas para bookmarks, integración AVFoundation ni la vista SwiftUI; el catálogo tampoco tiene cobertura para JSON corrupto o IDs duplicados.
+- Estos son hallazgos de revisión estática, no fallos reproducidos en ejecución. No se ha afirmado que estén corregidos.
+
 ### Estado técnico confirmado
 - No hay todavía un target completo de aplicación Xcode/iPadOS.
 - No hay motor de audio ni transporte/decks funcionales.
@@ -33,12 +43,12 @@
 - El paquete y el código inicial no deben presentarse como una aplicación terminada.
 
 ### Correcciones documentales de esta continuidad
-Se reconciliaron README y documentos de arquitectura, producto, decisiones, implementación, roadmap y validación de hardware para eliminar supuestos heredados sobre scratch y decks adicionales. La decisión vigente queda registrada en `docs/DECISIONS.md`. También se corrigió la descripción del estado en `docs/GITHUB_ACTIONS_COST_RESEARCH.md`.
+Se reconciliaron README y documentos de arquitectura, producto, decisiones, implementación, roadmap, Audio POC, FX Studio y validación MIDI/hardware para alinear el MVP con `docs/AI_HANDOFF.md`. Se retiraron del alcance activo Reverse, Scratch, Slip, Roll, Beat Jump, Quantize, sampler, capas para decks adicionales y grabación de mezclas. La decisión vigente queda registrada en `docs/DECISIONS.md`. También se corrigió la descripción del estado y los límites no verificados de Actions en `docs/GITHUB_ACTIONS_COST_RESEARCH.md`.
 
 ### Acceso y CI
 - La lectura de la rama y de la PR #1 fue confirmada.
 - La escritura en la rama `docs/swift6-technical-foundation` fue confirmada mediante commits documentales; no se escribió en `main`.
-- La consulta de ejecuciones asociadas al HEAD actual (`4772693abd0ff969ba6be53dad0286919323a22d`) devolvió cero ejecuciones.
+- La consulta de ejecuciones asociadas al HEAD revisado antes de esta actualización (`f1ac71ab95eb9f1dde403c520c6f4f86f0a238af`) devolvió cero ejecuciones.
 - No se ejecutó ningún workflow.
 - No se pudo verificar desde esta instancia la facturación, cuota restante, presupuesto de Actions ni permisos específicos de Actions de la cuenta. Por tanto, no iniciar runners hasta que esos límites puedan comprobarse.
 - El entorno local disponible para esta revisión es Linux x86_64 con Swift 6.2.1 y sin `xcodebuild`; no permite validar los frameworks ni la compilación nativa iPadOS.
