@@ -72,6 +72,8 @@ public struct Track: Identifiable, Codable, Equatable, Sendable {
     /// Stable identifier for a user-authorized local file. The app layer owns
     /// security-scoped URL/bookmark handling; the core stores the URL value.
     public var fileURL: URL
+    /// Security-scoped bookmark supplied by the iPadOS app for durable access.
+    public var fileBookmark: Data?
     public var duration: TimeInterval?
     public var metadata: TrackMetadata
     public var analysis: TrackAnalysis
@@ -79,12 +81,14 @@ public struct Track: Identifiable, Codable, Equatable, Sendable {
     public init(
         id: UUID = UUID(),
         fileURL: URL,
+        fileBookmark: Data? = nil,
         duration: TimeInterval? = nil,
         metadata: TrackMetadata = .init(),
         analysis: TrackAnalysis = .init()
     ) {
         self.id = id
         self.fileURL = fileURL
+        self.fileBookmark = fileBookmark
         self.duration = duration
         self.metadata = metadata
         self.analysis = analysis
