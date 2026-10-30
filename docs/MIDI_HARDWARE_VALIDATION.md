@@ -71,10 +71,10 @@ Para cada control continuo:
 - Evitar cambios bruscos de ganancia o parámetros.
 - Permitir calibración y guardar configuración por dispositivo.
 
-Para jog/scratch:
+Para jog wheels:
 - Medir dirección, resolución y velocidad de eventos.
 - Evaluar latencia y comportamiento al detener el movimiento.
-- Diferenciar búsqueda de pista, pitch bend y scratch según el tipo de señal real.
+- Diferenciar búsqueda/posición y pitch bend según el tipo de mensaje observado.
 
 ## Etapa 6 — Mapping y capas
 
@@ -85,7 +85,7 @@ La arquitectura debe permitir:
 - Asignación de controles a FX y parámetros.
 - Restauración segura de valores al cambiar de capa.
 
-La existencia de cuatro decks virtuales no implica que el hardware tenga cuatro canales físicos.
+La asignación de controles físicos debe basarse en los mensajes MIDI realmente observados.
 
 ## Criterio de aceptación
 
@@ -93,7 +93,7 @@ No declarar compatible la Hercules DJControl AIR hasta probar en el iPad:
 1. Enumeración estable.
 2. Recepción de mensajes de todos los controles necesarios.
 3. Desconexión y reconexión.
-4. Jog/scratch si el protocolo lo permite.
+4. Jog wheels para búsqueda/posición y pitch bend, si el protocolo lo permite.
 5. Sensor AIR, si expone datos accesibles.
 6. Ruteo de audio master/cue con la interfaz realmente utilizada.
 
