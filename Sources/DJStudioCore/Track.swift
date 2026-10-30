@@ -8,6 +8,10 @@ public struct TrackMetadata: Codable, Equatable, Sendable {
     public var genre: String?
     public var label: String?
     public var version: String?
+    /// Optional BPM tag read from ID3 TBPM; distinct from measured analysis.
+    public var bpm: Double?
+    /// Optional musical key tag read from ID3 TKEY.
+    public var musicalKey: String?
 
     public init(
         title: String? = nil,
@@ -16,7 +20,9 @@ public struct TrackMetadata: Codable, Equatable, Sendable {
         year: Int? = nil,
         genre: String? = nil,
         label: String? = nil,
-        version: String? = nil
+        version: String? = nil,
+        bpm: Double? = nil,
+        musicalKey: String? = nil
     ) {
         self.title = title
         self.artist = artist
@@ -25,6 +31,8 @@ public struct TrackMetadata: Codable, Equatable, Sendable {
         self.genre = genre
         self.label = label
         self.version = version
+        self.bpm = bpm
+        self.musicalKey = musicalKey
     }
 }
 
