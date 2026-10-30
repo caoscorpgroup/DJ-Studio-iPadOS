@@ -33,6 +33,8 @@ Puerta de salida: reproducción estable, instalación reproducible y ruteo docum
 - [x] Añadir lector AVFoundation de metadatos comunes y fallback ID3 para MP3.
 - [x] Leer y persistir duración cuando AVFoundation la proporciona.
 - [x] Añadir búsqueda inicial por título, artista, álbum y nombre de archivo.
+- [x] Añadir ordenamiento de biblioteca por título, artista, BPM, tonalidad y duración.
+- [x] Priorizar BPM analizado y Camelot cuando existan; usar etiquetas como fallback.
 - [x] Añadir prueba de parser contra un archivo binario temporal con etiquetas ID3.
 - [ ] Integrar la vista en un target de aplicación iPadOS/Xcode.
 - [ ] Compilar y ejecutar pruebas unitarias cuando exista un entorno autorizado sin coste adicional.
