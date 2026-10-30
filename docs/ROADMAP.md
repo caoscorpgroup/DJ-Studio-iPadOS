@@ -35,6 +35,9 @@ Puerta de salida: reproducción estable, instalación reproducible y ruteo docum
 - [x] Añadir búsqueda inicial por título, artista, álbum y nombre de archivo.
 - [x] Añadir ordenamiento de biblioteca por título, artista, BPM, tonalidad y duración.
 - [x] Priorizar BPM analizado y Camelot cuando existan; usar etiquetas como fallback.
+- [x] Añadir selector visible de ordenamiento en la biblioteca.
+- [x] Añadir filtros locales por rango de BPM y texto de tonalidad/Camelot.
+- [x] Añadir selección preliminar de una pista para preparar Deck A o Deck B (sin carga/reproducción todavía).
 - [x] Añadir prueba de parser contra un archivo binario temporal con etiquetas ID3.
 - [ ] Integrar la vista en un target de aplicación iPadOS/Xcode.
 - [ ] Compilar y ejecutar pruebas unitarias cuando exista un entorno autorizado sin coste adicional.
