@@ -89,14 +89,11 @@ El callback de audio no debe:
 
 Los buffers de audio deben estar disponibles antes de necesitarlos. Lectura, decodificación, análisis y generación de waveforms deben ejecutarse fuera del hilo de audio. Se usarán colas/buffers adecuados y cambios de parámetros seguros para tiempo real.
 
-## 5. Cuatro decks
+## 5. Alcance de decks
 
-El modo de cuatro decks incrementa el coste de decodificación, mezcla, EQ, FX y visualización. Debe medirse cada etapa. Se priorizará:
-1. Dos decks estables.
-2. Cuatro decks con FX básicos.
-3. Cuatro decks con cadenas de FX ampliadas.
+La arquitectura de producto y la primera implementación se limitan a dos decks (A y B) y dos canales de mezcla. El motor, la interfaz, la gestión de recursos y las pruebas de rendimiento se diseñarán para este alcance aprobado, sin reservar espacio ni complejidad para decks adicionales.
 
-No se prometerá rendimiento hasta medir CPU, memoria, latencia, temperatura y comportamiento prolongado en el iPad objetivo.
+No se prometerá rendimiento hasta medir CPU, memoria, latencia, temperatura y comportamiento prolongado de los dos decks en el iPad objetivo.
 
 ## 6. Ruteo de audio
 
@@ -135,4 +132,4 @@ No se considerará resuelto el flujo solo porque una compilación remota termine
 - Pruebas de interrupciones, llamadas, cambios de salida y desconexión USB.
 - Pruebas prolongadas de estabilidad y memoria.
 - Pruebas de regresión para evitar clicks, dropouts y cambios bruscos de ganancia.
-- Benchmark en el iPad A16 para dos decks antes de ampliar a cuatro.
+- Benchmark en el iPad A16 para los dos decks A/B del alcance aprobado.
