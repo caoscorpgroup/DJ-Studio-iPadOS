@@ -206,3 +206,51 @@ DJ Studio podrá analizar más que BPM, tonalidad y waveform. Se busca construir
 - Las recomendaciones de mezcla serán asistivas y editables, no automatismos que tomen el control de la mezcla.
 
 Este bloque es una dirección futura del producto. No implica que todas las capas de análisis estén incluidas en la primera versión.
+
+
+## 16. Preparación de biblioteca por carpetas y recomendaciones de mezcla
+
+### Flujo deseado
+
+1. El usuario selecciona una carpeta o conjunto de carpetas de música local.
+2. DJ Studio importa/escanea los archivos y analiza sus metadatos musicales.
+3. La biblioteca permite agrupar y filtrar pistas por tonalidad, modo y Camelot, además de BPM.
+4. El usuario puede solicitar recomendaciones de pistas que combinen con una canción seleccionada.
+5. El sistema presenta una lista ordenada de candidatas con razones comprensibles y datos comparativos.
+6. El usuario puede guardar listas, colecciones o grupos de mezcla para preparar una sesión.
+
+### Vistas de organización
+
+- Agrupar automáticamente por tonalidad detectada y modo mayor/menor.
+- Vista Camelot para facilitar selección armónica.
+- Ordenar o filtrar por BPM, energía, duración, género/etiquetas si existen, y confianza del análisis.
+- Permitir ordenar por tono sin obligar a que ese sea el único criterio.
+- Mantener la posibilidad de corregir manualmente tonalidad, BPM y etiquetas.
+- No mover ni modificar los archivos originales al organizar la biblioteca; usar colecciones y listas virtuales locales.
+
+### Recomendador "¿Qué puedo mezclar con esta pista?"
+
+Al seleccionar una canción, el sistema buscará en la biblioteca pistas candidatas y podrá clasificarlas por:
+- Compatibilidad armónica (tonalidad/modo/Camelot).
+- Diferencia de BPM y estabilidad del tempo.
+- Compatibilidad de energía y densidad rítmica.
+- Estructura musical y posibles ventanas de transición.
+- Actividad de graves y posibles conflictos de kick/bajo durante la superposición.
+- Calidad/confianza de los datos analizados.
+
+Cada recomendación debe explicar por qué aparece: por ejemplo, "misma tonalidad", "vecina Camelot", "BPM cercano", "intro disponible para mezclar" o "energía ascendente compatible". Cuando haya señales contradictorias, también debe indicarlo.
+
+### Formato de resultados
+
+- Lista de mejores candidatas para la pista seleccionada.
+- Filtros para priorizar armonía, BPM, energía o estructura.
+- Comparación de dos pistas y vista previa de puntos de entrada/salida sugeridos.
+- Guardar el resultado como playlist o colección de preparación.
+- El usuario conserva la decisión final; las recomendaciones no mezclan ni modifican pistas automáticamente.
+
+### Límites
+
+- La compatibilidad es una sugerencia, no una garantía musical.
+- La tonalidad detectada puede ser ambigua o cambiar durante la pista.
+- Las secciones, instrumentos y transiciones se estiman y deben poder corregirse.
+- El análisis y la recomendación funcionarán localmente como objetivo de diseño, sin requerir servicios de pago ni conexión permanente.
