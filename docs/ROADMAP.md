@@ -65,3 +65,11 @@ Puerta de salida: reproducción estable y ruteo documentado antes de construir l
 ## Regla de avance
 
 No se marcará una tarea como completada hasta que exista evidencia verificable: código, prueba, medición, captura o documentación técnica reproducible.
+## Fase de diseño visual y navegación — antes de la implementación completa
+- [ ] Usar edjing Mix como referencia de facilidad de uso, sin copiar su identidad ni recursos.
+- [ ] Diseñar el layout principal de dos decks.
+- [ ] Diseñar el modo de estudio de cuatro decks con cuatro waveforms legibles.
+- [ ] Definir navegación y jerarquía para DJ principal, FX Studio, Biblioteca, Performance y Hardware/Mapping.
+- [ ] Diseñar el flujo de importación y escaneo de música.
+- [ ] Diseñar visualización de waveform y análisis de secciones de mayor/menor actividad rítmica.
+- [ ] Validar los diseños en las dimensiones reales del iPad A16 antes de fijar tamaños.
