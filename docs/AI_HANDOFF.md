@@ -226,3 +226,12 @@ En cada etapa:
 El usuario aprueba las decisiones finales de producto. Si una decisión técnica implica cambiar el alcance, generar costes o descartar trabajo existente, consulta antes.
 
 **Principio rector:** continuar y mejorar el trabajo ya realizado; no reiniciar, no duplicar investigación y no reintroducir funciones que el usuario descartó.
+
+
+### Estado de automatización actualizado — 2026-10-30
+
+- Se creó `.github/workflows/djstudio-core-validation.yml` en esta rama.
+- Solo admite ejecución manual (`workflow_dispatch`); utiliza un único runner `macos-15`, timeout de 10 minutos, permiso `contents: read` y ejecuta `swift test --parallel`.
+- No se ha ejecutado. La cuota, el presupuesto/hard stop y el permiso específico de Actions de la cuenta siguen sin verificarse; no iniciar el workflow hasta confirmar que no habrá cargos no autorizados.
+- Su alcance es validar el paquete Swift en macOS. No compila un target iPadOS ni demuestra que exista una app instalable.
+- Ver `docs/BUILD_AND_TEST_PIPELINE.md`, `docs/GITHUB_ACTIONS_COST_RESEARCH.md` y `docs/CONTINUITY_LOG.md` para el detalle y las condiciones de ejecución.
