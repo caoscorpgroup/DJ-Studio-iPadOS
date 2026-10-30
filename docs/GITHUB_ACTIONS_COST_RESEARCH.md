@@ -13,14 +13,14 @@ La viabilidad sin cargos depende de la cuota incluida que realmente tenga la cue
 
 Según la documentación oficial de GitHub consultada el 2026-10-30:
 
-- GitHub Free incluye **12 USD/mes de cómputo** para usos elegibles en repositorios privados.
-- El runner macOS estándar (3 o 4 núcleos) cuesta **0,062 USD por minuto**.
-- La cuota teórica equivale a unos **193 minutos de runner macOS al mes** (12 / 0,062), antes de descontar cualquier otro consumo que comparta ese saldo.
-- GitHub Free incluye **500 MB de almacenamiento compartido para artefactos y GitHub Packages**.
-- El caché de Actions tiene una asignación separada de 10 GB por repositorio.
-- En repositorios públicos, los runners estándar hospedados por GitHub son gratuitos; esa alternativa no se recomienda aquí porque el usuario desea mantener privado el proyecto.
-- El cómputo incluido se comparte con otros usos elegibles de la cuenta, incluidos cloud sandbox compute/memory. Los consumos adicionales pueden facturarse.
-- Si no existe un método de pago válido, GitHub indica que el uso se bloquea al agotarse la cuota incluida. Si existe un método de pago, se debe revisar el presupuesto y activar el bloqueo de gasto para impedir cargos.
+- La asignación de cómputo incluida depende del plan: GitHub Free publica **12 USD/mes**; GitHub Pro y Team, **18 USD/mes**; Enterprise Cloud, **300 USD/mes**. No se ha verificado qué plan tiene la cuenta conectada.
+- El runner macOS estándar de 3 o 4 núcleos cuesta **0,062 USD por minuto**. GitHub redondea los minutos y fracciones de cada job al minuto entero siguiente.
+- Como referencia teórica, 12 USD cubrirían unos **193 minutos macOS** (12 / 0,062) si todo el saldo estuviera disponible y se dedicara exclusivamente a ese runner. No es una cuota fija de minutos ni confirma el saldo real de esta cuenta.
+- GitHub Free incluye **500 MB de almacenamiento de artefactos**; Pro incluye 1 GB. La caché de Actions tiene una asignación separada de 10 GB por repositorio.
+- Los runners estándar hospedados por GitHub son gratuitos para repositorios públicos; no se propone hacer público este repositorio privado para ahorrar costes.
+- El cómputo incluido se comparte con otros usos elegibles, incluidos cloud sandbox compute y memoria. El uso que exceda lo incluido puede facturarse.
+- Los presupuestos pueden configurarse para detener el uso al alcanzar el límite cuando esa opción esté disponible. La documentación indica que los presupuestos a nivel de usuario imponen un hard stop; debe verificarse qué tipo de presupuesto y controles tiene esta cuenta.
+- No se puede deducir el plan, saldo, consumo compartido, método de pago ni presupuesto activo de la cuenta a partir del repositorio o de los permisos GitHub disponibles en esta instancia.
 
 ### Fuentes oficiales
 
