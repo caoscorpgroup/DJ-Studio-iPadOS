@@ -42,7 +42,7 @@ Se ha iniciado un paquete Swift independiente, `DJStudioCore`, como primera base
 
 ## Biblioteca musical iPadOS (integración inicial)
 
-Se añadieron una vista SwiftUI de biblioteca, selección de carpetas con el selector de documentos, almacenamiento local de bookmarks y lectura de metadatos con AVFoundation para formatos compatibles con el sistema. El acceso a cada carpeta se abre temporalmente con security-scoped access durante el escaneo. Los bookmarks y el catálogo se guardan en Application Support.
+Se añadieron una vista SwiftUI de biblioteca con búsqueda por título/artista/álbum, selección múltiple de carpetas con el selector de documentos, almacenamiento local de bookmarks y lectura de metadatos y duración con AVFoundation para formatos compatibles con el sistema. El escáner conserva resultados de análisis anteriores al volver a escanear si no hay un analizador conectado. El acceso a cada carpeta se abre temporalmente con security-scoped access durante el escaneo. Los bookmarks y el catálogo se guardan en Application Support.
 
 La cobertura de metadatos depende del formato y de los tags realmente presentes. El lector ID3 dedicado continúa como fallback para MP3. El proyecto aún no contiene un target de aplicación Xcode completo ni se ha compilado o probado en iPadOS.
 
