@@ -8,6 +8,7 @@ public struct MusicLibraryView: View {
     @State private var folders: [MusicFolderBookmark] = []
     @State private var tracks: [Track] = []
     @State private var searchText = ""
+    @State private var sortOption: LibrarySortOption = .title
     @State private var isChoosingFolder = false
     @State private var isScanning = false
     @State private var message = "Selecciona una carpeta de música para comenzar."
@@ -92,12 +93,31 @@ public struct MusicLibraryView: View {
 
     private var filteredTracks: [Track] {
         let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !query.isEmpty else { return tracks }
-        return tracks.filter { track in
-            [track.metadata.title, track.metadata.artist, track.metadata.album, track.fileURL.lastPathComponent]
+        let matches = tracks.filter { track in
+            query.isEmpty || [track.metadata.title, track.metadata.artist, track.metadata.album, track.fileURL.lastPathComponent]
                 .compactMap { $0 }
                 .contains { $0.localizedCaseInsensitiveContains(query) }
         }
+        return matches.sorted { left, right in
+            switch sortOption {
+            case .title:
+                return displayTitle(left).localizedStandardCompare(displayTitle(right)) == .orderedAscending
+            case .artist:
+                return (left.metadata.artist ?? "").localizedStandardCompare(right.metadata.artist ?? "") == .orderedAscending
+            case .bpm:
+                return (left.analysis.bpm ?? left.metadata.bpm ?? .greatestFiniteMagnitude) <
+                    (right.analysis.bpm ?? right.metadata.bpm ?? .greatestFiniteMagnitude)
+            case .key:
+                return (left.analysis.camelotKey ?? left.metadata.musicalKey ?? "ZZZ")
+                    .localizedStandardCompare(right.analysis.camelotKey ?? right.metadata.musicalKey ?? "ZZZ") == .orderedAscending
+            case .duration:
+                return (left.duration ?? .greatestFiniteMagnitude) < (right.duration ?? .greatestFiniteMagnitude)
+            }
+        }
+    }
+
+    private func displayTitle(_ track: Track) -> String {
+        track.metadata.title ?? track.fileURL.deletingPathExtension().lastPathComponent
     }
 
     private static func durationLabel(_ duration: TimeInterval) -> String {
@@ -158,5 +178,14 @@ public struct MusicLibraryView: View {
             message = "No se pudo cargar la biblioteca: \(error.localizedDescription)"
         }
     }
+}
+private enum LibrarySortOption: String, CaseIterable, Identifiable {
+    case title = "Título"
+    case artist = "Artista"
+    case bpm = "BPM"
+    case key = "Tonalidad"
+    case duration = "Duración"
+
+    var id: String { rawValue }
 }
 #endif
