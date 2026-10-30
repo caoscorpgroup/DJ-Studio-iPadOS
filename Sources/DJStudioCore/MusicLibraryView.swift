@@ -9,6 +9,11 @@ public struct MusicLibraryView: View {
     @State private var tracks: [Track] = []
     @State private var searchText = ""
     @State private var sortOption: LibrarySortOption = .title
+    @State private var minimumBPM = 0.0
+    @State private var maximumBPM = 250.0
+    @State private var keyFilter = ""
+    @State private var deckATrackID: UUID?
+    @State private var deckBTrackID: UUID?
     @State private var isChoosingFolder = false
     @State private var isScanning = false
     @State private var message = "Selecciona una carpeta de música para comenzar."
@@ -65,6 +70,37 @@ public struct MusicLibraryView: View {
                             }
                         }
                         .pickerStyle(.menu)
+
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Rango BPM: \\(Int(minimumBPM))–\\(Int(maximumBPM))")
+                                .font(.subheadline)
+                            Slider(value: $minimumBPM, in: 0...250, step: 1)
+                            Slider(value: $maximumBPM, in: 0...250, step: 1)
+                            HStack {
+                                Text("Tonalidad / Camelot")
+                                Spacer()
+                                TextField("Ej. 8A", text: $keyFilter)
+                                    .textInputAutocapitalization(.characters)
+                                    .autocorrectionDisabled()
+                                    .multilineTextAlignment(.trailing)
+                                    .frame(maxWidth: 100)
+                            }
+                            Button("Restablecer filtros") {
+                                minimumBPM = 0
+                                maximumBPM = 250
+                                keyFilter = ""
+                            }
+                            .font(.caption)
+                        }
+                        .padding(.vertical, 4)
+
+                        HStack {
+                            Label(deckATrackID == nil ? "Deck A sin preparar" : "Deck A preparado", systemImage: "a.circle")
+                            Spacer()
+                            Label(deckBTrackID == nil ? "Deck B sin preparar" : "Deck B preparado", systemImage: "b.circle")
+                        }
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                     }
                     if tracks.isEmpty {
                         ContentUnavailableView("Biblioteca vacía", systemImage: "music.note.list",
@@ -85,6 +121,17 @@ public struct MusicLibraryView: View {
                                 }
                                 .font(.caption.monospacedDigit())
                                 .foregroundStyle(.secondary)
+                                Menu("Preparar en deck") {
+                                    Button("Deck A") { deckATrackID = track.id }
+                                    Button("Deck B") { deckBTrackID = track.id }
+                                }
+                                .font(.caption)
+                                if deckATrackID == track.id {
+                                    Text("Preparada para Deck A").font(.caption2).foregroundStyle(.tint)
+                                }
+                                if deckBTrackID == track.id {
+                                    Text("Preparada para Deck B").font(.caption2).foregroundStyle(.tint)
+                                }
                             }
                         }
                     }
@@ -102,9 +149,17 @@ public struct MusicLibraryView: View {
     private var filteredTracks: [Track] {
         let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
         let matches = tracks.filter { track in
-            query.isEmpty || [track.metadata.title, track.metadata.artist, track.metadata.album, track.fileURL.lastPathComponent]
+            let textMatches = query.isEmpty || [track.metadata.title, track.metadata.artist, track.metadata.album, track.fileURL.lastPathComponent]
                 .compactMap { $0 }
                 .contains { $0.localizedCaseInsensitiveContains(query) }
+            let bpm = track.analysis.bpm ?? track.metadata.bpm
+            let lowerBPM = min(minimumBPM, maximumBPM)
+            let upperBPM = max(minimumBPM, maximumBPM)
+            let bpmMatches = bpm.map { $0 >= lowerBPM && $0 <= upperBPM } ?? (lowerBPM == 0 && upperBPM == 250)
+            let keyQuery = keyFilter.trimmingCharacters(in: .whitespacesAndNewlines)
+            let key = track.analysis.camelotKey ?? track.metadata.musicalKey ?? ""
+            let keyMatches = keyQuery.isEmpty || key.localizedCaseInsensitiveContains(keyQuery)
+            return textMatches && bpmMatches && keyMatches
         }
         return matches.sorted { left, right in
             switch sortOption {
