@@ -10,6 +10,11 @@ public protocol LocalMusicAnalyzing: Sendable {
     func analyze(fileURL: URL) async throws -> TrackAnalysis
 }
 
+/// Optional duration capability implemented by readers backed by media frameworks.
+public protocol AudioDurationReading: Sendable {
+    func duration(of fileURL: URL) async throws -> TimeInterval?
+}
+
 /// Optional metadata enrichment. The default app configuration can omit this
 /// dependency entirely; library analysis and recommendations remain offline.
 public protocol ExternalMetadataEnriching: Sendable {
