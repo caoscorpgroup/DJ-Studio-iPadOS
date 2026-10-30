@@ -8,7 +8,9 @@
 - PR de revisión: #1, con destino a `main`; permanece abierta y no se ha fusionado.
 - Este repositorio corresponde exclusivamente a DJ Studio para iPadOS.
 - Alcance aprobado: dos decks A/B y dos canales. No diseñar ni implementar decks adicionales sin aprobación explícita.
-- Scratch está excluido. No añadirlo a la hoja de ruta ni a las pruebas de hardware.
+- Exclusiones del MVP: Scratch, Reverse, Slip, Roll, Beat Jump, Quantize, sampler y funciones avanzadas de performance no aprobadas.
+- Grabación de mezclas queda fuera de la primera versión.
+- Jog limitado a búsqueda/posición y Pitch Bend temporal; al soltar, vuelve al valor fijado por el pitch fader.
 - No modificar `main`, no fusionar la PR ni ejecutar workflows sin autorización y verificación previa de permisos, cuota y costes.
 
 ### Base existente recuperada
@@ -36,7 +38,7 @@ Se reconciliaron README y documentos de arquitectura, producto, decisiones, impl
 ### Acceso y CI
 - La lectura de la rama y de la PR #1 fue confirmada.
 - La escritura en la rama `docs/swift6-technical-foundation` fue confirmada mediante commits documentales; no se escribió en `main`.
-- La consulta de ejecuciones asociadas al HEAD inicial revisado devolvió cero ejecuciones.
+- La consulta de ejecuciones asociadas al HEAD actual (`4772693abd0ff969ba6be53dad0286919323a22d`) devolvió cero ejecuciones.
 - No se ejecutó ningún workflow.
 - No se pudo verificar desde esta instancia la facturación, cuota restante, presupuesto de Actions ni permisos específicos de Actions de la cuenta. Por tanto, no iniciar runners hasta que esos límites puedan comprobarse.
 - El entorno local disponible para esta revisión es Linux x86_64 con Swift 6.2.1 y sin `xcodebuild`; no permite validar los frameworks ni la compilación nativa iPadOS.
