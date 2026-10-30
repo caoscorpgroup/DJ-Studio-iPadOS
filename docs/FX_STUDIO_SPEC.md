@@ -45,7 +45,7 @@ La disponibilidad final de cada destino dependerá del diseño del mixer, el rut
 
 - Tiempo: Delay, Echo, Reverb.
 - Modulación: Flanger, Phaser, Chorus.
-- Dinámica/ritmo: Gate, Trans, Roll, Beat Repeat/Beatmasher.
+- Dinámica: Gate, Trans.
 - Textura: Noise, Bitcrusher, filtros y Tape Stop.
 - Repetición: Looper.
 
