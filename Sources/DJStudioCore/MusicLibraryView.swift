@@ -72,7 +72,7 @@ public struct MusicLibraryView: View {
                         .pickerStyle(.menu)
 
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Rango BPM: \\(Int(minimumBPM))–\\(Int(maximumBPM))")
+                            Text("Rango BPM: \(Int(minimumBPM))–\(Int(maximumBPM))")
                                 .font(.subheadline)
                             Slider(value: $minimumBPM, in: 0...250, step: 1)
                             Slider(value: $maximumBPM, in: 0...250, step: 1)
