@@ -106,6 +106,14 @@ Se requiere separar master y cue/headphones. La disponibilidad de canales depend
 
 Los datos de usuario se almacenarán localmente. La aplicación deberá respetar permisos de acceso a archivos y evitar modificar los archivos originales. Los metadatos y análisis se podrán reconstruir si la caché se pierde.
 
+### Biblioteca musical local
+- El usuario selecciona carpetas mediante el selector de documentos de iPadOS; la capa de aplicación gestiona acceso security-scoped y bookmarks persistentes.
+- El núcleo enumera recursivamente formatos de audio admitidos y lee etiquetas ID3 sin reescribir archivos.
+- El lector ID3 inicial contempla ID3v2.2, v2.3, v2.4 y fallback ID3v1 para MP3.
+- La biblioteca persiste referencias, metadatos y análisis en un catálogo JSON local con escritura atómica; no copia los archivos de audio.
+- La capa de aplicación deberá ubicar el catálogo en Application Support y excluirlo de iCloud/backup si el producto lo requiere.
+- El análisis de audio y cualquier futura identificación externa son módulos separados; la biblioteca y sus funciones esenciales no dependen de red, streaming ni cuentas de terceros.
+
 ## 8. Flujo de desarrollo sin Mac local
 
 El desarrollo se realizará desde el iPad en la medida que las herramientas lo permitan. Se evaluarán Swift Playgrounds y un runner macOS remoto de GitHub Actions para compilar y ejecutar pruebas automatizadas. Antes de considerar viable la distribución en un dispositivo físico habrá que verificar:
