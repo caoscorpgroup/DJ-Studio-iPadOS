@@ -45,6 +45,11 @@ Puerta de salida: reproducción estable, instalación reproducible y ruteo docum
 - [ ] Waveform overview y detalle.
 - [ ] Caché y análisis en segundo plano.
 - [ ] Estimar y visualizar actividad/energía rítmica por secciones.
+- [ ] Analizar energía por bandas (graves, medios y agudos).
+- [ ] Investigar detección de kick/bajo y entradas/salidas con nivel de confianza.
+- [ ] Detectar secciones musicales (intro, break, build-up, drop, outro) como sugerencias editables.
+- [ ] Investigar cambios de tonalidad y tempo dentro de una pista.
+- [ ] Diseñar comparador de compatibilidad entre dos pistas: armonía, BPM, energía y estructura.
 
 ## Fase 5 — FX y performance
 - [ ] FX básicos y parámetros.
