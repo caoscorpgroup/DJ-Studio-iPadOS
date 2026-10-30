@@ -31,7 +31,7 @@
 - La máscara de flags de formato de frame solo comprueba bits 0x0C; para ID3v2.3 los flags de compresión/cifrado usan 0x80/0x40. Requiere corrección y pruebas para v2.3/v2.4.
 - La cobertura ID3 actual se concentra en un caso v2.3. La fixture temporal contiene bytes ID3 válidos y un payload parecido a MPEG, pero no es una grabación MP3 completa ni decodificable.
 - `CompatibilityEngine` solo interpreta claves Camelot; el fallback `TrackMetadata.musicalKey` puede contener notación musical ID3 convencional (por ejemplo, Am) y entonces no produce puntuación armónica.
-- `MusicLibraryView.scanURL` ejecuta la enumeración recursiva síncrona de carpetas desde una vista `@MainActor`; mover ese trabajo fuera del actor principal antes de probar bibliotecas grandes.
+- `MusicLibraryView.scanURL`: la enumeración recursiva se movió a `Task.detached(priority: .utility)` en el commit `51da5715695f10accd5ce1ac16b8b5d825096ba3` para evitar bloquear `MainActor`; compilación y prueba todavía pendientes.
 - No hay pruebas específicas para bookmarks, integración AVFoundation ni la vista SwiftUI; el catálogo tampoco tiene cobertura para JSON corrupto o IDs duplicados.
 - Estos son hallazgos de revisión estática, no fallos reproducidos en ejecución. No se ha afirmado que estén corregidos.
 
@@ -43,12 +43,12 @@
 - El paquete y el código inicial no deben presentarse como una aplicación terminada.
 
 ### Correcciones documentales de esta continuidad
-Se reconciliaron README y documentos de arquitectura, producto, decisiones, implementación, roadmap, Audio POC, FX Studio y validación MIDI/hardware para alinear el MVP con `docs/AI_HANDOFF.md`. Se retiraron del alcance activo Reverse, Scratch, Slip, Roll, Beat Jump, Quantize, sampler, capas para decks adicionales y grabación de mezclas. La decisión vigente queda registrada en `docs/DECISIONS.md`. También se corrigió la descripción del estado y los límites no verificados de Actions en `docs/GITHUB_ACTIONS_COST_RESEARCH.md`.
+Se reconciliaron README y documentos de arquitectura, producto, decisiones, implementación, roadmap, Audio POC, FX Studio y validación MIDI/hardware para alinear el MVP con `docs/AI_HANDOFF.md`. Se corrigió en código la enumeración de carpetas desde `MainActor`, pendiente de compilación/prueba. Se retiraron del alcance activo Reverse, Scratch, Slip, Roll, Beat Jump, Quantize, sampler, capas para decks adicionales y grabación de mezclas. La decisión vigente queda registrada en `docs/DECISIONS.md`. También se corrigió la descripción del estado y los límites no verificados de Actions en `docs/GITHUB_ACTIONS_COST_RESEARCH.md`.
 
 ### Acceso y CI
 - La lectura de la rama y de la PR #1 fue confirmada.
 - La escritura en la rama `docs/swift6-technical-foundation` fue confirmada mediante commits documentales; no se escribió en `main`.
-- La consulta de ejecuciones asociadas al HEAD revisado antes de esta actualización (`f1ac71ab95eb9f1dde403c520c6f4f86f0a238af`) devolvió cero ejecuciones.
+- La consulta de ejecuciones asociadas al HEAD revisado (`51da5715695f10accd5ce1ac16b8b5d825096ba3`) devolvió cero ejecuciones. La lista de archivos modificados de la PR no contiene workflows; los permisos de Actions y el árbol completo de workflows no se han podido verificar.
 - No se ejecutó ningún workflow.
 - No se pudo verificar desde esta instancia la facturación, cuota restante, presupuesto de Actions ni permisos específicos de Actions de la cuenta. Por tanto, no iniciar runners hasta que esos límites puedan comprobarse.
 - El entorno local disponible para esta revisión es Linux x86_64 con Swift 6.2.1 y sin `xcodebuild`; no permite validar los frameworks ni la compilación nativa iPadOS.
