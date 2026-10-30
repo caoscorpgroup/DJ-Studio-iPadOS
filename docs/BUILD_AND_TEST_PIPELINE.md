@@ -78,3 +78,18 @@ No almacenar certificados, contraseñas, tokens ni perfiles privados en el repos
 ## Estado inicial
 
 Todo el flujo está pendiente de validación. La existencia de GitHub Actions o de un runner macOS no demuestra por sí sola que firma, instalación y depuración desde el iPad sean posibles.
+
+
+## Workflow de validación del paquete (configurado; ejecución pendiente)
+
+Se añadió `.github/workflows/djstudio-core-validation.yml` en la rama de trabajo.
+
+- Disparador exclusivo: `workflow_dispatch` (manual). No se ejecuta por cada push o pull request.
+- Runner: `macos-15`, un único job, límite de 10 minutos.
+- Operación: muestra la versión de Swift y ejecuta `swift test --parallel` sobre el paquete `DJStudioCore`.
+- Permisos: solo `contents: read`; no usa secretos, firma, publicación, artefactos ni servicios externos.
+- La acción de checkout está fijada a un SHA concreto.
+- **No se ha ejecutado**: el coste real de macOS, la cuota y el presupuesto de la cuenta siguen sin verificarse. No iniciar manualmente hasta confirmar el bloqueo de gasto adicional.
+- Esta validación comprueba el paquete Swift en macOS; **no** equivale a compilar un target iPadOS, generar una app instalable ni validar audio/MIDI en el iPad.
+
+Cuando exista el target Xcode/iPadOS, se diseñará un segundo workflow manual y separado para compilar el esquema de la app y, si procede, ejecutar pruebas en simulador. No se añade ahora porque el repositorio todavía no contiene ese target.
