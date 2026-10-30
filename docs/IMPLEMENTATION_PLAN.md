@@ -89,9 +89,8 @@ Solo después de superar las puertas anteriores:
 Orden recomendado:
 1. BPM y beatgrid.
 2. Tonalidad y visualización de waveform.
-3. Hot Cues, loops y Quantize.
+3. Hot Cues básicos y loops manuales/automáticos.
 4. FX básicos con parámetros suavizados.
-5. Grabación de mezcla.
 6. Medición de dos decks bajo carga.
 7. Validación prolongada de los dos decks A/B bajo carga, con registro de CPU, memoria, latencia y temperatura.
 
