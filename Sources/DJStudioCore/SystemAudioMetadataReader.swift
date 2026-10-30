@@ -1,3 +1,4 @@
+#if canImport(AVFoundation)
 import Foundation
 import AVFoundation
 
@@ -46,3 +47,5 @@ public struct SystemAudioMetadataReader: AudioMetadataReading {
         return seconds.isFinite && seconds >= 0 ? seconds : nil
     }
 }
+
+#endif
