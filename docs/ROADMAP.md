@@ -81,11 +81,10 @@ Puerta de salida: reproducción estable, instalación reproducible y ruteo docum
 - [ ] Visualizar timeline, curva de energía y duración estimada del set.
 - [ ] Explicar los motivos de cada recomendación y permitir guardar listas de preparación.
 
-## Fase 5 — FX y performance
+## Fase 5 — FX Studio y controles aprobados
 - [ ] FX básicos y parámetros.
 - [ ] Presets y perfiles.
-- [ ] Loops, Beat Jump, Roll, Slip y Quantize.
-- [ ] Grabación de mezcla.
+- [ ] Hot Cues básicos y loops manuales/automáticos.
 - [ ] Pruebas de carga y estabilidad.
 
 ## Fase 7 — Extensibilidad y publicación
