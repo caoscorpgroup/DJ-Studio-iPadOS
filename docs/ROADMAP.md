@@ -53,12 +53,12 @@ Puerta de salida: reproducción estable, instalación reproducible y ruteo docum
 - [ ] Grabación de mezcla.
 - [ ] Pruebas de carga y estabilidad.
 
-## Fase 6 — Cuatro decks
-- [ ] Cuatro decks táctiles.
-- [ ] Capas A/C y B/D para hardware de dos decks.
-- [ ] Mixer de cuatro canales.
-- [ ] Pruebas de CPU, memoria, latencia y temperatura.
-- [ ] Ajustes de interfaz y rendimiento.
+## Fase futura — Evaluación de cuatro decks (fuera del alcance inicial)
+- [ ] Reevaluar si cuatro decks aportan valor sin saturar la pantalla del iPad.
+- [ ] Prototipar una distribución con un solo mixer central de cuatro canales.
+- [ ] Evaluar capas A/C y B/D para hardware de dos decks.
+- [ ] Medir CPU, memoria, latencia y temperatura antes de decidir su viabilidad.
+- [ ] Requerirá una decisión de producto explícita antes de entrar en implementación.
 
 ## Fase 7 — Extensibilidad y publicación
 - [ ] Mapping editor.
@@ -70,11 +70,11 @@ Puerta de salida: reproducción estable, instalación reproducible y ruteo docum
 ## Fase de diseño visual y navegación — antes de la implementación completa
 - [ ] Usar edjing Mix como referencia de facilidad de uso, sin copiar su identidad ni recursos.
 - [ ] Diseñar el layout principal de dos decks.
-- [ ] Diseñar el modo de estudio de cuatro decks con cuatro waveforms legibles.
+- [ ] Mantener el diseño inicial enfocado exclusivamente en dos decks y dos waveforms amplios.
 - [ ] Definir navegación y jerarquía para DJ principal, FX Studio, Biblioteca, Performance y Hardware/Mapping.
 - [ ] Diseñar el flujo de importación y escaneo de música.
 - [ ] Diseñar visualización de waveform y análisis de secciones de mayor/menor actividad rítmica.
-- [ ] Validar los diseños en las dimensiones reales del iPad A16 antes de fijar tamaños.
+- [ ] Validar el diseño de dos decks en las dimensiones reales del iPad A16 antes de fijar tamaños.
 
 ## Regla de avance
 
