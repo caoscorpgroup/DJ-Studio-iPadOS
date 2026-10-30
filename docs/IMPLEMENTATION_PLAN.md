@@ -7,7 +7,7 @@ Convertir la especificación de producto en entregas pequeñas, comprobables y r
 ## Principios de ejecución
 
 1. **Prueba antes de promesa:** ninguna capacidad se considerará compatible hasta contar con una prueba reproducible en dispositivo.
-2. **Dos decks primero:** el objetivo inicial de rendimiento es dos decks estables. Cuatro decks se evaluarán después con mediciones.
+2. **Dos decks A/B:** el objetivo de rendimiento y diseño se limita a los dos decks aprobados; no se ampliará el alcance sin autorización explícita.
 3. **Audio independiente de la interfaz:** SwiftUI nunca será responsable del ciclo de tiempo real del audio.
 4. **Offline-first:** la reproducción, biblioteca y análisis básico deben funcionar con archivos locales, sin cuentas ni servicios remotos.
 5. **Coste cero por defecto:** no activar servicios, suscripciones, APIs de pago ni infraestructura facturable. Si GitHub u otro proveedor muestra límites o cargos, detenerse y solicitar autorización.
@@ -93,7 +93,7 @@ Orden recomendado:
 4. FX básicos con parámetros suavizados.
 5. Grabación de mezcla.
 6. Medición de dos decks bajo carga.
-7. Cuatro decks y sus límites de CPU, memoria, latencia y temperatura.
+7. Validación prolongada de los dos decks A/B bajo carga, con registro de CPU, memoria, latencia y temperatura.
 
 El análisis de actividad rítmica por secciones será una estimación derivada de características de señal; deberá poder revisarse y ajustarse.
 
@@ -105,7 +105,7 @@ El análisis de actividad rítmica por secciones será una estimación derivada 
 | Ruteo master/cue no disponible | Probar interfaces y rutas reales antes de diseñar la preescucha |
 | Latencia o dropouts | Medir con señales conocidas y reducir alcance antes de añadir FX |
 | Controladora no reconocida | Registrar modelo, conexión, enumeración y mensajes; separar USB-MIDI de sensor propietario |
-| Cuatro decks exceden recursos | Mantener dos decks como objetivo base y limitar FX/visualización según mediciones |
+| El procesamiento de dos decks excede recursos | Medir y optimizar el motor antes de ampliar efectos o visualización |
 | Dependencia con licencia incompatible | Auditar licencias y obligaciones antes de incorporar código o frameworks |
 
 ## Registro de avance
