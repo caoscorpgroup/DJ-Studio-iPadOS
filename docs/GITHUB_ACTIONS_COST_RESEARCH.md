@@ -7,7 +7,7 @@
 
 Es técnicamente viable compilar una aplicación nativa iPadOS con Swift y Xcode en un runner macOS estándar de GitHub Actions. El repositorio DJ-Studio-iPadOS es privado, por lo que el uso de runners macOS consume el cómputo incluido en el plan de la cuenta. No es uso ilimitado gratuito.
 
-La viabilidad sin cargos depende de que la cuota incluida esté disponible y de que el presupuesto de Actions impida cualquier consumo facturable adicional.
+La viabilidad sin cargos depende de la cuota incluida que realmente tenga la cuenta, del consumo compartido actual y de que el presupuesto de Actions bloquee cualquier gasto adicional. Esta instancia no puede leer la facturación, cuota ni presupuesto privado de la cuenta; esos datos deben verificarse en GitHub antes de cualquier ejecución.
 
 ## Datos oficiales consultados
 
@@ -64,7 +64,7 @@ Cuando exista un proyecto Xcode real, el primer workflow deberá:
 
 ## Estado actual del repositorio
 
-La revisión de metadatos indica que el repositorio es privado y su rama predeterminada es main. El README todavía describe el proyecto como fase de definición y auditoría, sin motor de audio implementado. No se encontró un workflow de compilación iPadOS en la ruta consultada.
+La revisión de la rama `docs/swift6-technical-foundation` confirma que el paquete `DJStudioCore` y la biblioteca local tienen código inicial, pero no existe todavía un target completo de aplicación iPadOS ni un motor de audio. El PR #1 no incluye archivos de workflow entre sus cambios y la consulta de ejecuciones asociadas al HEAD revisado devolvió cero ejecuciones. Esto no demuestra que no existan workflows en otras ramas ni permite conocer la configuración de Actions de la cuenta.
 
 **No se ha iniciado ninguna ejecución de GitHub Actions**, por lo que esta investigación no ha consumido minutos de runner.
 
