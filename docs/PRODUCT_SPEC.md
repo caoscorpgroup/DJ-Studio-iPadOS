@@ -124,3 +124,27 @@ La biblioteca debe permitir importar y escanear archivos musicales locales. El a
 3. Biblioteca: exploración, importación, análisis y preparación musical.
 4. Performance: Hot Cues, loops, Roll, Beat Jump y sampler.
 5. Hardware/Mapping: selección de controladora, asignación de botones, knobs, faders y perfiles.
+
+## 13. Distribución del modo de cuatro decks y mixer único
+
+Decisión de producto aprobada:
+- El modo de cuatro decks utilizará **un único mixer central de cuatro canales**, no dos mixers independientes.
+- Cada deck A/B/C/D tendrá su propio canal asignable al mixer.
+- La pantalla deberá priorizar cuatro waveforms legibles y controles esenciales, evitando duplicar elementos de mezcla.
+- La distribución se adaptará al tamaño y orientación del iPad. Se podrán reorganizar o compactar controles secundarios, pero no ocultar el estado esencial de cada deck.
+- La vista de dos decks seguirá siendo la experiencia principal; el modo de cuatro decks será una disposición alternativa.
+- La selección de deck/canal y las capas de controladora deberán ser claras para evitar operar accidentalmente el deck equivocado.
+
+## 14. FX Studio modular
+
+Decisión de producto aprobada:
+- FX Studio será un área dedicada y más profunda que un panel convencional de efectos.
+- El usuario podrá ajustar parámetros individuales, combinar módulos en cadenas y guardar sus propias configuraciones.
+- Se estudiarán distintas ubicaciones de procesamiento: por deck/canal, envío y master, siempre que la arquitectura y el rendimiento lo permitan.
+- Los parámetros podrán sincronizarse al tempo cuando el efecto lo admita, además de ofrecer control manual.
+- La interfaz deberá mostrar claramente el orden de la cadena, el destino de señal y los parámetros activos.
+- Se contemplan macros para controlar varios parámetros relacionados con un solo gesto, sin eliminar el acceso al ajuste individual.
+- Los cambios de parámetros y presets deberán suavizarse para evitar clicks, saltos bruscos de ganancia o interrupciones.
+- El conjunto inicial de efectos y las cadenas disponibles se incorporarán gradualmente y se validarán con pruebas de CPU, memoria y audio en el iPad A16.
+
+La modularidad y el nivel de personalización son objetivos de diseño; el número de módulos simultáneos y las posibilidades de ruteo quedarán sujetos a mediciones reales.
