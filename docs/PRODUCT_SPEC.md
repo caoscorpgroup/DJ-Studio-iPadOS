@@ -29,17 +29,15 @@ No se pretende reproducir exactamente la interfaz ni el producto de otra marca. 
 Funciones objetivo:
 - Play/Pause, Cue, Sync y Master Tempo.
 - Pitch fader y pitch bend.
-- Reverse.
 - EQ de tres bandas, filtro, gain y medidores.
 - Crossfader y mezcla por canal.
 - Preescucha (cue) independiente de la salida master.
 - Loops manuales y automáticos.
-- Quantize, Slip, Beat Jump y Roll.
 
 ## 5. Efectos y rendimiento
 
 Familias de efectos deseadas:
-- Echo, Delay, Reverb, Flanger, Phaser, Noise, Gate, Roll, Trans, Beatmasher, Bitcrusher, Tape Stop y Looper.
+- Echo, Delay, Reverb, Flanger, Phaser, Noise, Gate, Trans, Bitcrusher, Tape Stop y Looper.
 - Parámetros automatizables y presets guardables.
 - Perfiles iniciales de efectos para Techno, Minimal, House y Experimental.
 - Panel FX Studio separado de la vista principal.
@@ -70,7 +68,7 @@ La exactitud del análisis automático deberá medirse con una colección de pis
 
 ## 8. Grabación
 
-La grabación de mezclas es una función deseada. Debe evaluarse el formato, la ruta de captura, el uso de almacenamiento, la gestión de interrupciones y las restricciones de iPadOS antes de comprometer una implementación.
+La grabación de mezclas queda fuera de la primera versión. No se implementará ni se añadirá a la hoja de ruta del MVP sin aprobación explícita posterior.
 
 ## 9. Personalización
 
@@ -85,7 +83,9 @@ La grabación de mezclas es una función deseada. Debe evaluarse el formato, la 
 - Servicios en la nube obligatorios.
 - Red social o publicación automática de mezclas.
 - Compatibilidad universal garantizada con cualquier controladora.
-- Funciones de scratch.
+- Scratch y Reverse.
+- Slip, Roll, Beat Jump, Quantize, sampler y controles avanzados de performance no aprobados.
+- Grabación de mezclas en el MVP.
 - Mezcla de más de dos pistas simultáneas.
 - Copiar código de terceros sin auditoría de licencia y arquitectura.
 
@@ -121,7 +121,7 @@ La biblioteca debe permitir importar y escanear archivos musicales locales. El a
 1. DJ principal: decks, waveforms, mixer y transporte.
 2. FX Studio: efectos, cadenas, parámetros y presets.
 3. Biblioteca: exploración, importación, análisis y preparación musical.
-4. Performance: Hot Cues, loops, Roll, Beat Jump y sampler.
+4. Performance: Hot Cues básicos y loops manuales/automáticos.
 5. Hardware/Mapping: selección de controladora, asignación de botones, knobs, faders y perfiles.
 
 ## 13. Alcance inicial: dos decks
