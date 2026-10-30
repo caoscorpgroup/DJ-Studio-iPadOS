@@ -46,6 +46,12 @@ Este documento recoge decisiones y supuestos del proyecto. Las decisiones nuevas
 - Scratch queda fuera del alcance aprobado y no se añadirá a la hoja de ruta ni a las pruebas de hardware.
 - Las decisiones explícitas del usuario prevalecen sobre propuestas o supuestos anteriores que contradigan este alcance.
 
+## Exclusiones vigentes del MVP — 2026-10-30
+- No implementar Scratch ni Reverse.
+- No implementar Slip, Roll, Beat Jump, Quantize, sampler ni otras funciones avanzadas de performance que no hayan sido aprobadas.
+- La grabación de mezclas queda fuera de la primera versión.
+- La validación del jog se limita a búsqueda/posición y Pitch Bend temporal; al soltarlo debe regresar a la velocidad definida por el pitch fader.
+
 ## Pendiente de decisión o validación
 - Versión mínima de iPadOS.
 - Motor de audio definitivo y arquitectura de ruteo master/cue.
