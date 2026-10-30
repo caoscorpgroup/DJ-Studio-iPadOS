@@ -43,6 +43,10 @@ Puerta de salida: reproducción estable, instalación reproducible y ruteo docum
 - [ ] Compilar y ejecutar pruebas unitarias cuando exista un entorno autorizado sin coste adicional.
 - [ ] Validar bookmarks después de cerrar/reabrir la app en iPadOS.
 - [ ] Probar con archivos MP3/M4A reales proporcionados y bibliotecas de distintos tamaños.
+- [ ] Compilar y probar el cambio que mueve la enumeración de carpetas fuera de MainActor.
+- [ ] Completar el parser ID3 con soporte para cabeceras extendidas y flags de frames v2.3/v2.4; añadir pruebas de regresión.
+- [ ] Normalizar claves ID3 convencionales antes de usarlas como fallback Camelot en el comparador.
+- [ ] Añadir pruebas de bookmarks, AVFoundation y recuperación ante catálogo JSON inválido o IDs duplicados.
 
 ## Fase 2 — Dos decks y mixer
 - [ ] Dos decks con transporte.
