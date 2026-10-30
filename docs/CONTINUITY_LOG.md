@@ -63,3 +63,25 @@ Se reconciliaron README y documentos de arquitectura, producto, decisiones, impl
 7. Avanzar a los dos decks A/B y mixer solo después de superar las puertas de validación anteriores.
 
 Las tareas no se marcarán como completadas sin evidencia reproducible. Las decisiones del usuario prevalecen sobre propuestas técnicas previas.
+
+
+## 2026-10-30 — Continuación: primer workflow controlado
+
+### Estado GitHub confirmado
+- PR #1: abierta, no fusionada, destino `main`; HEAD observado: `cd266d15ae9992d734c7e3bcc9a3b2a577123103`.
+- Comparación de rama: 100 commits por delante de `main`, 0 por detrás.
+- La cuenta conectada tiene permiso de colaborador `write` en el repositorio. No se ha confirmado permiso específico de Actions ni acceso a controles de facturación.
+- Los archivos cambiados de PR #1 no incluyen workflows. La consulta de `.github/workflows` en la rama devolvió 404 antes de crear el primer archivo.
+
+### Cambio realizado
+- Creado `.github/workflows/djstudio-core-validation.yml`.
+- Workflow manual únicamente (`workflow_dispatch`), runner `macos-15`, un job, timeout de 10 minutos, `contents: read`, checkout fijado a SHA y ejecución de `swift test --parallel`.
+- Sin triggers automáticos, matriz, artefactos, firma, publicación ni secretos.
+- Actualizados `docs/BUILD_AND_TEST_PIPELINE.md` y `docs/GITHUB_ACTIONS_COST_RESEARCH.md` para documentar su alcance y límites.
+
+### Validación y restricciones
+- Los cambios se escribieron en esta rama; no se modificó `main` ni se fusionó PR #1.
+- El workflow **no se ejecutó**. No se ha consumido cómputo de GitHub Actions por esta configuración.
+- Cuota, presupuesto, hard stop y permiso específico de Actions siguen sin verificarse; no despachar el workflow hasta comprobarlos.
+- El job valida el paquete Swift en macOS, no una app iPadOS instalable. El target de aplicación y el motor de audio siguen sin existir.
+- Próximo paso técnico: inspeccionar y corregir el parser ID3 y el fallback de tonalidad, añadir pruebas de regresión y preparar una validación ejecutable cuando el entorno Apple y los costes estén autorizados.
