@@ -22,6 +22,16 @@ Las etapas son secuenciales y sus fechas se definirán después de comprobar her
 
 Puerta de salida: reproducción estable, instalación reproducible y ruteo documentado antes de construir la interfaz completa.
 
+## Fase 1A — Base de biblioteca local (código inicial creado; validación pendiente)
+- [x] Añadir modelos de pista, metadatos ID3 y análisis.
+- [x] Implementar lector ID3v2.2/v2.3/v2.4 e ID3v1 para MP3.
+- [x] Añadir enumeración recursiva de carpetas y formatos locales.
+- [x] Añadir catálogo local JSON con persistencia atómica.
+- [x] Conectar escaneo, lector de metadatos y almacenamiento.
+- [ ] Compilar y ejecutar pruebas unitarias cuando exista un entorno autorizado sin coste adicional.
+- [ ] Implementar en la app iPadOS el selector de carpetas, security-scoped access y bookmarks persistentes.
+- [ ] Probar importación con MP3 reales y bibliotecas de distintos tamaños.
+
 ## Fase 2 — Dos decks y mixer
 - [ ] Dos decks con transporte.
 - [ ] Ganancia, EQ, filtro y crossfader.
