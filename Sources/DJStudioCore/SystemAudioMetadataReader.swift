@@ -16,7 +16,7 @@ public struct SystemAudioMetadataReader: AudioMetadataReading {
         var metadata = TrackMetadata()
 
         for item in items {
-            guard let value = try? await item.load(.stringValue), let value, !value.isEmpty else { continue }
+            guard let value = try? await item.load(.stringValue), !value.isEmpty else { continue }
             switch item.commonKey {
             case .commonKeyTitle: metadata.title = value
             case .commonKeyArtist: metadata.artist = value
