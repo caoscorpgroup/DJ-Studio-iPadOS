@@ -5,18 +5,48 @@ Las etapas son secuenciales y sus fechas se definirán después de comprobar her
 ## Fase 0 — Definición y auditoría
 - [x] Crear repositorio privado.
 - [x] Registrar visión y requisitos iniciales.
+- [x] Aprobar Swift 6 como lenguaje principal.
 - [ ] Confirmar versión de iPadOS y adaptador/hub de la controladora.
 - [ ] Auditar licencias y portabilidad de proyectos candidatos.
 - [ ] Separar funciones imprescindibles de funciones posteriores.
+- [ ] Validar un flujo de desarrollo viable desde iPad, incluida compilación remota, firma e instalación.
 
 ## Fase 1 — Prueba técnica de audio
-- [ ] Crear proyecto mínimo nativo iPadOS.
+- [ ] Crear proyecto mínimo nativo iPadOS en Swift.
+- [ ] Configurar un flujo de compilación reproducible con runner macOS remoto, si resulta viable sin coste.
 - [ ] Abrir archivo local y reproducirlo.
 - [ ] Medir latencia y estabilidad.
 - [ ] Probar salida master y salida cue multicanal.
 - [ ] Verificar interrupciones y cambios de ruta.
+- [ ] Instalar y probar la compilación en el iPad A16.
 
-Puerta de salida: reproducción estable y ruteo documentado antes de construir la interfaz completa.
+Puerta de salida: reproducción estable, instalación reproducible y ruteo documentado antes de construir la interfaz completa.
+
+## Fase 1A — Base de biblioteca local (integración inicial; validación pendiente)
+- [x] Añadir modelos de pista, metadatos ID3 y análisis.
+- [x] Implementar lector ID3v2.2/v2.3/v2.4 e ID3v1 para MP3.
+- [x] Añadir enumeración recursiva de carpetas y formatos locales.
+- [x] Añadir catálogo local JSON con persistencia atómica.
+- [x] Conectar escaneo, lector de metadatos y almacenamiento.
+- [ ] Compilar y ejecutar pruebas unitarias cuando exista un entorno autorizado sin coste adicional.
+- [x] Añadir persistencia y resolución de bookmarks de carpetas en Application Support.
+- [x] Añadir lector AVFoundation de metadatos comunes y fallback ID3 para MP3.
+- [x] Leer y persistir duración cuando AVFoundation la proporciona.
+- [x] Añadir búsqueda inicial por título, artista, álbum y nombre de archivo.
+- [x] Añadir ordenamiento de biblioteca por título, artista, BPM, tonalidad y duración.
+- [x] Priorizar BPM analizado y Camelot cuando existan; usar etiquetas como fallback.
+- [x] Añadir selector visible de ordenamiento en la biblioteca.
+- [x] Añadir filtros locales por rango de BPM y texto de tonalidad/Camelot.
+- [x] Añadir selección preliminar de una pista para preparar Deck A o Deck B (sin carga/reproducción todavía).
+- [x] Añadir prueba de parser contra un archivo binario temporal con etiquetas ID3.
+- [ ] Integrar la vista en un target de aplicación iPadOS/Xcode.
+- [ ] Compilar y ejecutar pruebas unitarias cuando exista un entorno autorizado sin coste adicional.
+- [ ] Validar bookmarks después de cerrar/reabrir la app en iPadOS.
+- [ ] Probar con archivos MP3/M4A reales proporcionados y bibliotecas de distintos tamaños.
+- [ ] Compilar y probar el cambio que mueve la enumeración de carpetas fuera de MainActor.
+- [ ] Completar el parser ID3 con soporte para cabeceras extendidas y flags de frames v2.3/v2.4; añadir pruebas de regresión.
+- [ ] Normalizar claves ID3 convencionales antes de usarlas como fallback Camelot en el comparador.
+- [ ] Añadir pruebas de bookmarks, AVFoundation y recuperación ante catálogo JSON inválido o IDs duplicados.
 
 ## Fase 2 — Dos decks y mixer
 - [ ] Dos decks con transporte.
@@ -28,7 +58,7 @@ Puerta de salida: reproducción estable y ruteo documentado antes de construir l
 ## Fase 3 — Hercules DJControl AIR
 - [ ] Identificar enumeración USB/MIDI en iPadOS.
 - [ ] Capturar mensajes MIDI de todos los controles.
-- [ ] Validar jog wheels y scratch.
+- [ ] Validar jog wheels para búsqueda/posición y pitch bend mediante mensajes observados.
 - [ ] Validar botones, faders, knobs y LEDs/feedback.
 - [ ] Investigar sensor AIR.
 - [ ] Validar master/cue y canales físicos con el adaptador real.
@@ -40,20 +70,26 @@ Puerta de salida: reproducción estable y ruteo documentado antes de construir l
 - [ ] Beatgrid editable.
 - [ ] Waveform overview y detalle.
 - [ ] Caché y análisis en segundo plano.
+- [ ] Estimar y visualizar actividad/energía rítmica por secciones.
+- [ ] Analizar energía por bandas (graves, medios y agudos).
+- [ ] Investigar detección de kick/bajo y entradas/salidas con nivel de confianza.
+- [ ] Detectar secciones musicales (intro, break, build-up, drop, outro) como sugerencias editables.
+- [ ] Investigar cambios de tonalidad y tempo dentro de una pista.
+- [ ] Diseñar comparador de compatibilidad entre dos pistas: armonía, BPM, energía y estructura.
+- [ ] Escanear carpetas locales y generar biblioteca con análisis y caché.
+- [ ] Crear agrupación/orden por tonalidad, modo y Camelot.
+- [ ] Crear recomendador de pistas compatibles para una canción seleccionada.
+- [ ] Diseñar constructor asistido de sets por duración objetivo.
+- [ ] Proponer secuencias con continuidad armónica, BPM, energía y estructura.
+- [ ] Permitir bloquear/reemplazar pistas, comparar propuestas y ajustar transiciones.
+- [ ] Visualizar timeline, curva de energía y duración estimada del set.
+- [ ] Explicar los motivos de cada recomendación y permitir guardar listas de preparación.
 
-## Fase 5 — FX y performance
+## Fase 5 — FX Studio y controles aprobados
 - [ ] FX básicos y parámetros.
 - [ ] Presets y perfiles.
-- [ ] Loops, Beat Jump, Roll, Slip y Quantize.
-- [ ] Grabación de mezcla.
+- [ ] Hot Cues básicos y loops manuales/automáticos.
 - [ ] Pruebas de carga y estabilidad.
-
-## Fase 6 — Cuatro decks
-- [ ] Cuatro decks táctiles.
-- [ ] Capas A/C y B/D para hardware de dos decks.
-- [ ] Mixer de cuatro canales.
-- [ ] Pruebas de CPU, memoria, latencia y temperatura.
-- [ ] Ajustes de interfaz y rendimiento.
 
 ## Fase 7 — Extensibilidad y publicación
 - [ ] Mapping editor.
@@ -62,14 +98,15 @@ Puerta de salida: reproducción estable y ruteo documentado antes de construir l
 - [ ] TestFlight/App Store o distribución alternativa, según viabilidad.
 - [ ] Documentación de usuario y soporte.
 
-## Regla de avance
-
-No se marcará una tarea como completada hasta que exista evidencia verificable: código, prueba, medición, captura o documentación técnica reproducible.
 ## Fase de diseño visual y navegación — antes de la implementación completa
 - [ ] Usar edjing Mix como referencia de facilidad de uso, sin copiar su identidad ni recursos.
 - [ ] Diseñar el layout principal de dos decks.
-- [ ] Diseñar el modo de estudio de cuatro decks con cuatro waveforms legibles.
+- [ ] Mantener el diseño inicial enfocado exclusivamente en dos decks y dos waveforms amplios.
 - [ ] Definir navegación y jerarquía para DJ principal, FX Studio, Biblioteca, Performance y Hardware/Mapping.
 - [ ] Diseñar el flujo de importación y escaneo de música.
 - [ ] Diseñar visualización de waveform y análisis de secciones de mayor/menor actividad rítmica.
-- [ ] Validar los diseños en las dimensiones reales del iPad A16 antes de fijar tamaños.
+- [ ] Validar el diseño de dos decks en las dimensiones reales del iPad A16 antes de fijar tamaños.
+
+## Regla de avance
+
+No se marcará una tarea como completada hasta que exista evidencia verificable: código, prueba, medición, captura o documentación técnica reproducible.

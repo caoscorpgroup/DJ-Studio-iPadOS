@@ -7,8 +7,8 @@ Proyecto de aplicación DJ nativa para iPad, orientada a mezcla local, baja late
 ## Objetivos principales
 
 - Reproducir y mezclar archivos de audio locales.
-- Ofrecer dos decks como vista predeterminada y una opción de cuatro decks.
 - Diseñar una interfaz profesional, configurable y usable en iPad.
+- Mantener exclusivamente dos decks (A/B) como alcance aprobado del producto.
 - Priorizar compatibilidad con la **Hercules DJControl AIR original**.
 - Permitir una arquitectura de mappings extensible para otras controladoras.
 - Separar el motor de audio de la interfaz para proteger la continuidad de reproducción.
@@ -38,4 +38,31 @@ Propuesta inicial: Swift, SwiftUI, Core Audio, Core MIDI y Accelerate; C++/Objec
 
 ## Estado actual
 
-Este repositorio contiene documentación de planificación. No representa todavía una aplicación funcional.
+Se ha iniciado un paquete Swift independiente, `DJStudioCore`, como primera base de código. Incluye modelos de pistas/análisis, interfaces para lectura de metadatos y análisis local, y un primer comparador explicable de compatibilidad armónica, BPM y energía. Es una base de dominio, no todavía una aplicación iPadOS instalable ni un motor de audio.
+
+## Biblioteca musical iPadOS (integración inicial)
+
+Se añadieron una vista SwiftUI de biblioteca con búsqueda por título/artista/álbum, selección múltiple de carpetas con el selector de documentos, almacenamiento local de bookmarks y lectura de metadatos y duración con AVFoundation para formatos compatibles con el sistema. El escáner conserva resultados de análisis anteriores al volver a escanear si no hay un analizador conectado. El acceso a cada carpeta se abre temporalmente con security-scoped access durante el escaneo. Los bookmarks y el catálogo se guardan en Application Support.
+
+La cobertura de metadatos depende del formato y de los tags realmente presentes. El lector ID3 dedicado continúa como fallback para MP3. El proyecto aún no contiene un target de aplicación Xcode completo ni se ha compilado o probado en iPadOS.
+
+## Base de código
+
+- `Package.swift`: paquete Swift 6.
+- `Sources/DJStudioCore/Track.swift`: modelos de pista, metadatos ID3, bookmarks y análisis.
+- `Sources/DJStudioCore/MP3ID3Reader.swift`: lector local de ID3v2.2/v2.3/v2.4 e ID3v1; lee solo los bytes de etiquetas.
+- `Sources/DJStudioCore/LocalFolderImporter.swift`: enumeración recursiva de formatos de audio locales.
+- `Sources/DJStudioCore/LocalLibraryStore.swift`: catálogo JSON local con escritura atómica.
+- `Sources/DJStudioCore/LocalLibraryScanner.swift`: conexión de importación, lectura de metadatos, análisis opcional y persistencia.
+- `Sources/DJStudioCore/MusicFolderBookmarkStore.swift`: persistencia y resolución de permisos/bookmarks de carpetas.
+- `Sources/DJStudioCore/SystemAudioMetadataReader.swift`: metadatos comunes mediante AVFoundation y fallback ID3 para MP3.
+- `Sources/DJStudioCore/MusicLibraryView.swift`: vista SwiftUI inicial para seleccionar carpetas, escanear y consultar pistas.
+- `Sources/DJStudioCore/LibraryInterfaces.swift`: contratos para lectura local y análisis offline; enriquecimiento externo opcional.
+- `Sources/DJStudioCore/CompatibilityEngine.swift`: primera clasificación transparente de compatibilidad.
+- `Tests/DJStudioCoreTests/CompatibilityEngineTests.swift`: pruebas unitarias iniciales.
+- `Tests/DJStudioCoreTests/MP3ID3ReaderTests.swift`: prueba sintética de lectura ID3v2.3.
+- `Tests/DJStudioCoreTests/LocalFolderImporterTests.swift`: pruebas iniciales de formatos y validación de carpetas.
+- `Tests/DJStudioCoreTests/LocalLibraryStoreTests.swift`: persistencia del catálogo.
+- `Tests/DJStudioCoreTests/LocalLibraryScannerTests.swift`: evita duplicados al volver a escanear una pista.
+
+La primera versión del producto está centrada en dos decks. La biblioteca local no depende de servicios de streaming ni servidores externos. La app iPadOS deberá gestionar los permisos y bookmarks de carpetas seleccionadas por el usuario. No se han ejecutado workflows de GitHub Actions ni compilaciones remotas. La base todavía requiere validación con Swift/Xcode y pruebas en el iPad objetivo.
