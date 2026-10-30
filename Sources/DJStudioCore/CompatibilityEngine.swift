@@ -21,6 +21,30 @@ public struct CompatibilityFactors: Equatable, Sendable {
 public struct CompatibilityEngine: Sendable {
     public init() {}
 
+    /// Compares full library tracks, using analyzed values first and embedded
+    /// ID3 BPM/key tags as fallback metadata when analysis is not available.
+    public func compare(_ first: Track, _ second: Track) -> CompatibilityFactors {
+        let firstAnalysis = TrackAnalysis(
+            bpm: first.analysis.bpm ?? first.metadata.bpm,
+            camelotKey: first.analysis.camelotKey ?? first.metadata.musicalKey,
+            energy: first.analysis.energy,
+            beatGridOffset: first.analysis.beatGridOffset,
+            bpmConfidence: first.analysis.bpmConfidence,
+            keyConfidence: first.analysis.keyConfidence,
+            energyConfidence: first.analysis.energyConfidence
+        )
+        let secondAnalysis = TrackAnalysis(
+            bpm: second.analysis.bpm ?? second.metadata.bpm,
+            camelotKey: second.analysis.camelotKey ?? second.metadata.musicalKey,
+            energy: second.analysis.energy,
+            beatGridOffset: second.analysis.beatGridOffset,
+            bpmConfidence: second.analysis.bpmConfidence,
+            keyConfidence: second.analysis.keyConfidence,
+            energyConfidence: second.analysis.energyConfidence
+        )
+        return compare(firstAnalysis, secondAnalysis)
+    }
+
     public func compare(_ first: TrackAnalysis, _ second: TrackAnalysis) -> CompatibilityFactors {
         let harmony = harmonyScore(first.camelotKey, second.camelotKey)
         let tempo = tempoScore(first.bpm, second.bpm)
