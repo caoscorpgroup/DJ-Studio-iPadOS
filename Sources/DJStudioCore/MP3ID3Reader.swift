@@ -62,7 +62,7 @@ public struct MP3ID3Reader: AudioMetadataReading {
             let identifierLength = version == 2 ? 3 : 4
             let identifierData = data[offset..<(offset + identifierLength)]
             guard let identifier = String(data: identifierData, encoding: .ascii),
-                  identifier.allSatisfy({ $0.isASCII && $0.isLetter || $0.isNumber }) else { break }
+                  identifier.utf8.allSatisfy { (65...90).contains($0) || (48...57).contains($0) } else { break }
 
             if identifier.allSatisfy({ $0 == "\0" }) { break }
 
