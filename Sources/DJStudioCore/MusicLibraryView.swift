@@ -70,8 +70,8 @@ public struct MusicLibraryView: View {
                                     .font(.subheadline)
                                     .foregroundStyle(.secondary)
                                 HStack(spacing: 12) {
-                                    if let bpm = track.metadata.bpm { Text(String(format: "%.1f BPM", bpm)) }
-                                    if let key = track.metadata.musicalKey { Text(key) }
+                                    if let bpm = track.analysis.bpm ?? track.metadata.bpm { Text(String(format: "%.1f BPM", bpm)) }
+                                    if let key = track.analysis.camelotKey ?? track.metadata.musicalKey { Text(key) }
                                     if let duration = track.duration { Text(Self.durationLabel(duration)) }
                                     Text(track.fileURL.pathExtension.uppercased())
                                 }
