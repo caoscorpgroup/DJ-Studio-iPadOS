@@ -40,7 +40,7 @@ El prototipo comenzará evaluando AVFAudio/AVAudioEngine. La decisión de usar C
 - Transporte por deck.
 - Pitch y reproducción a velocidad variable.
 - Beat phase y sincronización.
-- Cue points, loops, reverse y estado de reproducción.
+- Cue points, loops y estado de reproducción.
 - Waveform position y metadatos.
 
 ### Mixer Engine
