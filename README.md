@@ -51,5 +51,9 @@ Se ha iniciado un paquete Swift independiente, `DJStudioCore`, como primera base
 - `Sources/DJStudioCore/LibraryInterfaces.swift`: contratos para lectura local y análisis offline; enriquecimiento externo opcional.
 - `Sources/DJStudioCore/CompatibilityEngine.swift`: primera clasificación transparente de compatibilidad.
 - `Tests/DJStudioCoreTests/CompatibilityEngineTests.swift`: pruebas unitarias iniciales.
+- `Tests/DJStudioCoreTests/MP3ID3ReaderTests.swift`: prueba sintética de lectura ID3v2.3.
+- `Tests/DJStudioCoreTests/LocalFolderImporterTests.swift`: pruebas iniciales de formatos y validación de carpetas.
+- `Tests/DJStudioCoreTests/LocalLibraryStoreTests.swift`: persistencia del catálogo.
+- `Tests/DJStudioCoreTests/LocalLibraryScannerTests.swift`: evita duplicados al volver a escanear una pista.
 
 La primera versión del producto está centrada en dos decks. La biblioteca local no depende de servicios de streaming ni servidores externos. La app iPadOS deberá gestionar los permisos y bookmarks de carpetas seleccionadas por el usuario. No se han ejecutado workflows de GitHub Actions ni compilaciones remotas. La base todavía requiere validación con Swift/Xcode y pruebas en el iPad objetivo.
