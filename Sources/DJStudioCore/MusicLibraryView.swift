@@ -227,7 +227,12 @@ public struct MusicLibraryView: View {
     private func scanURL(_ url: URL) async throws {
         isScanning = true
         defer { isScanning = false }
-        let files = try importer.audioFiles(in: url)
+        // Recursive directory enumeration can be expensive for large libraries.
+        // Keep it off MainActor so the SwiftUI interface remains responsive.
+        let folderImporter = importer
+        let files = try await Task.detached(priority: .utility) {
+            try folderImporter.audioFiles(in: url)
+        }.value
         let imported = try await scanner.scan(files: files, into: libraryStore)
         tracks = await libraryStore.allTracks()
         message = "Escaneo terminado: \(imported.count) archivos encontrados."
