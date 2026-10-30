@@ -54,7 +54,7 @@ Puerta de salida: reproducción estable, instalación reproducible y ruteo docum
 ## Fase 3 — Hercules DJControl AIR
 - [ ] Identificar enumeración USB/MIDI en iPadOS.
 - [ ] Capturar mensajes MIDI de todos los controles.
-- [ ] Validar jog wheels y scratch.
+- [ ] Validar jog wheels para búsqueda/posición y pitch bend mediante mensajes observados.
 - [ ] Validar botones, faders, knobs y LEDs/feedback.
 - [ ] Investigar sensor AIR.
 - [ ] Validar master/cue y canales físicos con el adaptador real.
@@ -87,13 +87,6 @@ Puerta de salida: reproducción estable, instalación reproducible y ruteo docum
 - [ ] Loops, Beat Jump, Roll, Slip y Quantize.
 - [ ] Grabación de mezcla.
 - [ ] Pruebas de carga y estabilidad.
-
-## Fase futura — Evaluación de cuatro decks (fuera del alcance inicial)
-- [ ] Reevaluar si cuatro decks aportan valor sin saturar la pantalla del iPad.
-- [ ] Prototipar una distribución con un solo mixer central de cuatro canales.
-- [ ] Evaluar capas A/C y B/D para hardware de dos decks.
-- [ ] Medir CPU, memoria, latencia y temperatura antes de decidir su viabilidad.
-- [ ] Requerirá una decisión de producto explícita antes de entrar en implementación.
 
 ## Fase 7 — Extensibilidad y publicación
 - [ ] Mapping editor.
