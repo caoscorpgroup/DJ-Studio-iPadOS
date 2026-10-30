@@ -79,11 +79,9 @@ Para jog wheels:
 ## Etapa 6 — Mapping y capas
 
 La arquitectura debe permitir:
-- Capas/modificadores configurables.
-- Perfiles guardables y exportables.
-- Dos decks físicos controlando A/C y B/D mediante selección de capa, si el usuario lo desea.
-- Asignación de controles a FX y parámetros.
-- Restauración segura de valores al cambiar de capa.
+- Perfiles de mapping configurables, guardables y exportables.
+- Asignación de controles a funciones aprobadas, FX y parámetros.
+- Restauración segura de valores al cambiar de perfil.
 
 La asignación de controles físicos debe basarse en los mensajes MIDI realmente observados.
 
