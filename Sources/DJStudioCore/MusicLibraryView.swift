@@ -7,6 +7,7 @@ import UniformTypeIdentifiers
 public struct MusicLibraryView: View {
     @State private var folders: [MusicFolderBookmark] = []
     @State private var tracks: [Track] = []
+    @State private var searchText = ""
     @State private var isChoosingFolder = false
     @State private var isScanning = false
     @State private var message = "Selecciona una carpeta de música para comenzar."
@@ -60,7 +61,7 @@ public struct MusicLibraryView: View {
                         ContentUnavailableView("Biblioteca vacía", systemImage: "music.note.list",
                                                description: Text("Añade una carpeta con archivos de audio."))
                     } else {
-                        ForEach(tracks) { track in
+                        ForEach(filteredTracks) { track in
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(track.metadata.title ?? track.fileURL.deletingPathExtension().lastPathComponent)
                                     .font(.headline)
@@ -70,6 +71,7 @@ public struct MusicLibraryView: View {
                                 HStack(spacing: 12) {
                                     if let bpm = track.metadata.bpm { Text(String(format: "%.1f BPM", bpm)) }
                                     if let key = track.metadata.musicalKey { Text(key) }
+                                    if let duration = track.duration { Text(Self.durationLabel(duration)) }
                                     Text(track.fileURL.pathExtension.uppercased())
                                 }
                                 .font(.caption.monospacedDigit())
@@ -80,11 +82,27 @@ public struct MusicLibraryView: View {
                 }
             }
             .navigationTitle("Biblioteca musical")
+            .searchable(text: $searchText, prompt: "Buscar pista, artista o álbum")
             .fileImporter(isPresented: $isChoosingFolder, allowedContentTypes: [.folder],
                           allowsMultipleSelection: true, onCompletion: handleFolderSelection)
             .task { await reload() }
         }
         .preferredColorScheme(.dark)
+    }
+
+    private var filteredTracks: [Track] {
+        let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !query.isEmpty else { return tracks }
+        return tracks.filter { track in
+            [track.metadata.title, track.metadata.artist, track.metadata.album, track.fileURL.lastPathComponent]
+                .compactMap { $0 }
+                .contains { $0.localizedCaseInsensitiveContains(query) }
+        }
+    }
+
+    private static func durationLabel(_ duration: TimeInterval) -> String {
+        let totalSeconds = max(0, Int(duration.rounded()))
+        return String(format: "%d:%02d", totalSeconds / 60, totalSeconds % 60)
     }
 
     private func handleFolderSelection(_ result: Result<[URL], Error>) {
