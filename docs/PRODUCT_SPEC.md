@@ -51,13 +51,14 @@ Los efectos se incorporarán gradualmente. Cada efecto deberá tener límites de
 ## 6. Biblioteca y análisis
 
 - Importación y organización de archivos locales.
-- BPM y tonalidad estimados automáticamente.
-- Beatgrid sugerido y ajustable.
+- BPM y tonalidad estimados automáticamente, incluyendo modo mayor/menor y notación Camelot cuando la confianza lo permita.
+- Beatgrid sugerido y ajustable, con downbeats, compases y posibles cambios de tempo.
 - Waveform y datos de análisis en caché.
+- Análisis musical avanzado progresivo: actividad de bombo y bajo, distribución de energía por bandas de frecuencia, estructura de secciones y cambios de energía.
 - Persistencia local de cues, loops, BPM, tonalidad, beatgrid, playlists e historial.
 - El análisis se ejecutará en segundo plano y no bloqueará la reproducción.
 
-La exactitud del análisis automático deberá medirse con una colección de pistas de prueba; las estimaciones no se presentarán como infalibles.
+La exactitud del análisis automático deberá medirse con una colección de pistas de prueba; las estimaciones no se presentarán como infalibles. Las detecciones de instrumentos, secciones y compatibilidad serán probabilísticas y deberán mostrar su nivel de confianza o permitir corrección manual.
 
 ## 7. Controladoras y mapping
 
@@ -146,3 +147,62 @@ Decisión de producto aprobada:
 - El conjunto inicial de efectos y las cadenas disponibles se incorporarán gradualmente y se validarán con pruebas de CPU, memoria y audio en el iPad A16.
 
 La modularidad y el nivel de personalización son objetivos de diseño; el número de módulos simultáneos y las posibilidades de ruteo quedarán sujetos a mediciones reales.
+
+
+## 15. Análisis musical avanzado y compatibilidad de mezcla
+
+Objetivo de evolución:
+DJ Studio podrá analizar más que BPM, tonalidad y waveform. Se busca construir una representación musical útil para preparar mezclas y entender visualmente cómo evoluciona cada pista.
+
+### Capas de análisis
+
+1. **Armonía**
+   - Estimar tonalidad y modo mayor/menor.
+   - Mostrar notación musical y Camelot.
+   - Investigar detección de modulaciones o cambios de tonalidad dentro de una pista.
+   - Permitir corrección manual y conservar el dato corregido.
+
+2. **Ritmo**
+   - Detectar beats, downbeats y compases.
+   - Construir beatgrid editable.
+   - Detectar cambios de tempo, ritmos sincopados y pasajes donde la detección sea incierta.
+   - No asumir que todas las pistas tienen tempo constante o estructura regular.
+
+3. **Actividad por bandas y elementos**
+   - Analizar energía de bajas, medias y altas frecuencias.
+   - Estimar actividad de bombo/kick y bajo, incluyendo sus entradas, salidas y pausas.
+   - Diferenciar energía espectral de una identificación real de instrumento: una banda de graves activa no demuestra por sí sola que exista un bajo o bombo aislado.
+   - Mostrar capas visuales sincronizadas con el waveform, activables individualmente.
+
+4. **Estructura y energía**
+   - Estimar intro, outro, breakdown/break, build-up, drop y otras secciones relevantes.
+   - Representar evolución de energía y densidad rítmica a lo largo de la pista.
+   - Permitir editar límites de secciones y etiquetas.
+   - Tratar las etiquetas como sugerencias, no como verdades universales del género.
+
+5. **Compatibilidad entre pistas**
+   - Comparar BPM y estabilidad de tempo.
+   - Comparar tonalidad/modo y proximidad armónica mediante Camelot cuando aplique.
+   - Comparar energía, densidad rítmica y estructura.
+   - Sugerir posibles zonas de entrada/salida y ventanas de mezcla.
+   - Explicar por qué dos pistas podrían funcionar juntas y señalar posibles conflictos.
+   - No reducir la compatibilidad a una puntuación única ni garantizar que una mezcla sonará bien; el oído y la decisión del DJ siguen siendo determinantes.
+
+### Presentación en la interfaz
+
+- El waveform podrá mostrar capas opcionales para beats/downbeats, actividad de graves, energía por bandas, secciones y energía general.
+- Cada capa tendrá una leyenda clara y podrá ocultarse para mantener una pantalla limpia.
+- La vista principal de dos decks conservará legibilidad: el análisis detallado vivirá en Biblioteca/Preparación o en un panel expandible.
+- Las zonas detectadas podrán utilizarse para preparar Hot Cues y loops sugeridos, siempre con confirmación del usuario.
+
+### Estrategia técnica y validación
+
+- Empezar con DSP local y análisis de características de audio que pueda ejecutarse sin conexión.
+- Evaluar modelos de machine learning únicamente cuando una técnica DSP más simple no alcance la precisión necesaria.
+- El análisis pesado se ejecutará fuera del hilo de audio, con caché local y progreso visible.
+- No usar servicios remotos obligatorios ni APIs de pago para las funciones esenciales.
+- Medir precisión por tipo de pista, género, calidad de grabación y estructura; incluir pruebas con música electrónica, pistas con intros largas, breaks, cambios de tempo y material poco convencional.
+- Mostrar incertidumbre cuando el algoritmo no pueda distinguir con fiabilidad un elemento o una sección.
+- Las recomendaciones de mezcla serán asistivas y editables, no automatismos que tomen el control de la mezcla.
+
+Este bloque es una dirección futura del producto. No implica que todas las capas de análisis estén incluidas en la primera versión.
