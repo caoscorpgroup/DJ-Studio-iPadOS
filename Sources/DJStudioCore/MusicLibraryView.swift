@@ -58,6 +58,14 @@ public struct MusicLibraryView: View {
                 }
 
                 Section("Biblioteca · \(tracks.count)") {
+                    if !tracks.isEmpty {
+                        Picker("Ordenar por", selection: $sortOption) {
+                            ForEach(LibrarySortOption.allCases) { option in
+                                Text(option.rawValue).tag(option)
+                            }
+                        }
+                        .pickerStyle(.menu)
+                    }
                     if tracks.isEmpty {
                         ContentUnavailableView("Biblioteca vacía", systemImage: "music.note.list",
                                                description: Text("Añade una carpeta con archivos de audio."))
