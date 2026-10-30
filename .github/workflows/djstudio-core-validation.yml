@@ -1,0 +1,39 @@
+name: DJStudioCore validation
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/djstudio-core-validation.yml
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Branch or commit to validate
+        required: true
+        default: docs/swift6-technical-foundation
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: djstudio-core-validation
+  cancel-in-progress: true
+
+jobs:
+  package-tests:
+    name: Swift package tests (macOS)
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ inputs.ref || 'docs/swift6-technical-foundation' }}
+
+      - name: Show Swift toolchain
+        run: swift --version
+
+      - name: Build and run package tests
+        run: swift test --parallel
