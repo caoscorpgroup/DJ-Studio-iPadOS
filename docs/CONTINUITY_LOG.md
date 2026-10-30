@@ -85,3 +85,10 @@ Las tareas no se marcarán como completadas sin evidencia reproducible. Las deci
 - Cuota, presupuesto, hard stop y permiso específico de Actions siguen sin verificarse; no despachar el workflow hasta comprobarlos.
 - El job valida el paquete Swift en macOS, no una app iPadOS instalable. El target de aplicación y el motor de audio siguen sin existir.
 - Próximo paso técnico: inspeccionar y corregir el parser ID3 y el fallback de tonalidad, añadir pruebas de regresión y preparar una validación ejecutable cuando el entorno Apple y los costes estén autorizados.
+
+
+### Confirmación posterior a los commits de esta continuación
+- El workflow y los tres documentos de continuidad fueron recuperados de GitHub después de escribirlos; su contenido coincide con lo esperado.
+- La lista actualizada de archivos de PR #1 incluye `.github/workflows/djstudio-core-validation.yml`.
+- HEAD de PR #1 tras la primera tanda de commits de esta continuación: `a647ccf6bd0530a35e491807a5d515ed2f59e852`. Después se actualizó también este handoff; consultar GitHub para el HEAD definitivo y no reutilizar este SHA como si siguiera siendo el último.
+- No se inició ningún workflow ni se ejecutó una compilación remota.
