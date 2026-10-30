@@ -27,8 +27,8 @@ Estas son hipótesis de implementación, no afirmaciones de compatibilidad ya de
 - Pruebas con archivos PCM/formatos comunes que el sistema pueda decodificar.
 
 ### Excluido
-- Dos o cuatro decks.
-- Pitch shifting, time-stretch y scratch.
+- Funcionalidad de decks y mixer DJ, que pertenece a fases posteriores.
+- Pitch shifting y time-stretch.
 - BPM, key, beatgrid y waveform detallado.
 - EQ, crossfader y efectos.
 - Grabación.
