@@ -17,7 +17,7 @@ No se pretende reproducir exactamente la interfaz ni el producto de otra marca. 
 ## 3. Diseño de decks
 
 - Alcance inicial: exclusivamente dos decks (A y B), para reproducir y mezclar dos pistas simultáneamente.
-- No habrá modo de cuatro decks en la primera versión; se pospone para una posible ampliación futura.
+- El alcance aprobado se limita a dos decks (A y B); no se contempla ampliar el número de decks sin una nueva aprobación explícita.
 - Información visible: BPM, tonalidad, posición, duración, pitch, estado de reproducción y waveform.
 - Ocho Hot Cues por pista.
 - Cue temporal y cue permanente.
@@ -35,7 +35,6 @@ Funciones objetivo:
 - Preescucha (cue) independiente de la salida master.
 - Loops manuales y automáticos.
 - Quantize, Slip, Beat Jump y Roll.
-- Scratch mediante jog wheels cuando el hardware y su protocolo lo permitan.
 
 ## 5. Efectos y rendimiento
 
@@ -86,7 +85,8 @@ La grabación de mezclas es una función deseada. Debe evaluarse el formato, la 
 - Servicios en la nube obligatorios.
 - Red social o publicación automática de mezclas.
 - Compatibilidad universal garantizada con cualquier controladora.
-- Cuatro decks o mezcla de más de dos pistas simultáneas en la primera versión.
+- Funciones de scratch.
+- Mezcla de más de dos pistas simultáneas.
 - Copiar código de terceros sin auditoría de licencia y arquitectura.
 
 ## 11. Criterios de aceptación iniciales
@@ -104,7 +104,7 @@ edjing Mix queda establecido como referencia de facilidad de uso, organización 
 Principios acordados:
 - La pantalla principal debe ser clara y fácil de entender, con los controles esenciales a mano.
 - La cabina inicial tendrá exclusivamente dos decks grandes, A y B, con espacio suficiente para waveforms y controles legibles.
-- El modo de cuatro decks queda pospuesto; no se comprimirá la interfaz para intentar incluir más reproductores.
+- La interfaz se diseñará exclusivamente para dos decks A/B, sin reservar espacio para reproductores adicionales.
 - Biblioteca musical, FX Studio, Performance y Hardware/Mapping tendrán espacios claramente identificados y navegación sencilla.
 - Las herramientas avanzadas estarán en paneles secundarios o desplegables para no sobrecargar la pantalla de mezcla.
 - La estética será oscura, profesional y propia de DJ Studio.
@@ -115,8 +115,7 @@ La biblioteca debe permitir importar y escanear archivos musicales locales. El a
 ### Alcance de decks y espacio de trabajo
 - La primera versión tendrá dos decks (A y B) y permitirá reproducir/mezclar dos pistas simultáneamente.
 - El espacio de pantalla se dedicará a dos waveforms amplios, transporte y controles esenciales.
-- No se incluirán decks C/D ni un mixer de cuatro canales en el alcance inicial.
-- Una posible versión futura podrá reevaluar cuatro decks, capas de controladora y mixer ampliado, después de validar espacio, rendimiento y usabilidad.
+- El mixer tendrá dos canales, uno asignado a cada deck, y no se planificará un mixer ampliado dentro del alcance aprobado.
 
 ### Áreas principales de navegación
 1. DJ principal: decks, waveforms, mixer y transporte.
@@ -131,8 +130,8 @@ Decisión de producto aprobada:
 - La primera versión tendrá únicamente dos decks, A y B, para reproducir y mezclar dos pistas de audio simultáneamente.
 - El mixer tendrá dos canales, uno asignado a cada deck, dentro de una única sección central de mezcla.
 - La interfaz priorizará dos waveforms amplios, controles legibles y acceso directo a las funciones esenciales.
-- No se implementará ni mostrará un modo de cuatro decks en la primera versión.
-- La posibilidad de cuatro decks queda aplazada para una fase futura y no condicionará el diseño ni la arquitectura visual inicial.
+- La implementación se limitará a los dos decks A/B definidos por el producto.
+- No se planificarán decks adicionales ni un mixer ampliado sin una nueva aprobación explícita del usuario.
 
 ## 14. FX Studio modular
 
