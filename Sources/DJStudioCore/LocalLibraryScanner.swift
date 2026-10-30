@@ -23,7 +23,9 @@ public struct LocalLibraryScanner: Sendable {
         imported.reserveCapacity(files.count)
 
         for fileURL in files {
-            let metadata = try await metadataReader.readMetadata(from: fileURL)
+            // Keep the file in the library even when a container/codec has no readable tags.
+            // A later analyzer or format-specific reader can enrich it without losing the entry.
+            let metadata = (try? await metadataReader.readMetadata(from: fileURL)) ?? TrackMetadata()
             let analysis: TrackAnalysis
             if let analyzer {
                 analysis = (try? await analyzer.analyze(fileURL: fileURL)) ?? TrackAnalysis()
