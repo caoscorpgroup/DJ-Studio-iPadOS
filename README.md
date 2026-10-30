@@ -38,4 +38,14 @@ Propuesta inicial: Swift, SwiftUI, Core Audio, Core MIDI y Accelerate; C++/Objec
 
 ## Estado actual
 
-Este repositorio contiene documentación de planificación. No representa todavía una aplicación funcional.
+Se ha iniciado un paquete Swift independiente, `DJStudioCore`, como primera base de código. Incluye modelos de pistas/análisis, interfaces para lectura de metadatos y análisis local, y un primer comparador explicable de compatibilidad armónica, BPM y energía. Es una base de dominio, no todavía una aplicación iPadOS instalable ni un motor de audio.
+
+## Base de código
+
+- `Package.swift`: paquete Swift 6.
+- `Sources/DJStudioCore/Track.swift`: modelos de pista, metadatos y análisis.
+- `Sources/DJStudioCore/LibraryInterfaces.swift`: contratos para lectura local y análisis offline; enriquecimiento externo opcional.
+- `Sources/DJStudioCore/CompatibilityEngine.swift`: primera clasificación transparente de compatibilidad.
+- `Tests/DJStudioCoreTests/CompatibilityEngineTests.swift`: pruebas unitarias iniciales.
+
+La primera versión del producto está centrada en dos decks. No se han ejecutado workflows de GitHub Actions ni compilaciones remotas. La base todavía requiere validación con Swift/Xcode y pruebas en el iPad objetivo.
