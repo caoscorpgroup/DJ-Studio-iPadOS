@@ -5,7 +5,7 @@ import AVFoundation
 /// Reads common embedded metadata using AVFoundation for audio formats supported
 /// by the OS. MP3 ID3 values are used as a fallback when common metadata is absent.
 /// No network access and no writes to source files occur.
-public struct SystemAudioMetadataReader: AudioMetadataReading {
+public struct SystemAudioMetadataReader: AudioMetadataReading, AudioDurationReading {
     private let mp3Reader = MP3ID3Reader()
 
     public init() {}
